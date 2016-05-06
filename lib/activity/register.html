@@ -5,60 +5,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/reset.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/container.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/grid.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/header.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/icon.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/image.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/segment.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/form.min.css">
-    <link rel="stylesheet" type="text/css" href="./semantic-ui/dist/components/button.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/register.css">
     <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
     <script type="text/javascript" src="./js/angular.min.js"></script>
+    <script type="text/javascript" src="./js/angular-cookies.min.js"></script>
   </head>
-  <body ng-app="register" ng-controller="registerController as vm">
-    <div class="context-wrapper">
-      <div id="topIntro" class="ui inverted blue vertical masthead center aligned segment"> 
-        <div id="intro" class="ui text container"><img src="./img/title.svg" class="title">
-          <h1 class="animatedText"><i class="gift icon"></i><span id="titleText">飞扬流量红包大派送</span></h1>
-        </div>
-      </div>
-      <div id="middleIntro" class="ui vetical stripe segment">
-        <div class="ui middle aligned stackable grid container">
-          <div class="row">
-            <div class="eight wide column center aligned"> 
-              <h3 id="text" class="ui header">输入您的手机号码办理登记</h3>
-            </div>
-          </div>
-          <div class="row">
-            <form id="input" name="form" class="ui form">
-              <div class="ui center aligned stackable grid container">
-                <div class="row">
-                  <div ng-class="{'error':(form.cellphone.$touched) &amp;&amp; (form.cellphone.$error.required || form.cellphone.$error.cellphone)}" class="eight wide column center aligned field">
-                    <input name="cellphone" type="number" ng-model="vm.cellphone" placeholder="请输入手机号" required cellphone>
-                  </div>
-                </div>
-                <div id="button" class="row">
-                  <div class="eight wide column center aligned">
-                    <button class="ui primary button"> <span id="buttonText">我要领50M流量</span><i class="arrow right icon"></i></button>
-                    <button class="ui primary loading button"> <span id="buttonText">我要领50M流量</span><i class="arrow right icon"></i></button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="row">
-            <div class="eight wide column center aligned">
-              <h3 id="textSuccess" class="ui header">您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账</h3>
-            </div>
-          </div>
+  <body ng-app="register" ng-controller="registerController as vm" ng-cloak>
+    <div id="topIntro" class="container">
+      <div class="row">
+        <div id="intro" class="col-xs-12"><img src="./img/title.svg" class="title">
+          <h2 id="titleText" class="animatedText">飞扬流量红包大派送</h2>
         </div>
       </div>
     </div>
+    <div id="joined" ng-show="vm.registered" class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <h1 id="successIcon"> <i class="glyphicon glyphicon-ok"></i></h1>
+          <h4 id="successText">您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账</h4>
+        </div>
+      </div>
+    </div>
+    <div id="join" ng-hide="vm.registered" class="container">
+      <form name="form" novalidate class="form-horizontal">
+        <div ng-hide="vm.registered" class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <div id="input" ng-class="{'has-error':(form.cellphone.$touched || form.$submitted)&amp;&amp;(form.cellphone.$error.required || form.cellphone.$error.cellphone)}" class="form-group">
+              <input name="cellphone" type="text" ng-model="vm.cellphone" placeholder="请输入手机号" ng-blur="vm.checkPhone()" required cellphone class="form-control input-lg">
+            </div>
+          </div>
+        </div>
+        <div ng-hide="vm.registered" class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+              <button type="submit" ng-click="vm.joinGame()" data-loading-text="&lt;i class='fa fa-circle-o-notch fa-spin'&gt;&lt;/i&gt;" class="btn btn-success button"><span id="buttonText">我要领100M流量</span><i class="glyphicon glyphicon-menu-right"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 introduction">
+            <p id="introtext1">前1000名可以领取流量红包</p>
+            <p id="introtext2">仅限移动用户，每号一次</p>
+          </div>
+        </div>
+      </form>
+    </div>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/jquery.lettering-0.6.1.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/textillate/jquery.textillate.js"></script>
     <script type="text/javascript" src="./js/register.js"></script>
     <script type="text/javascript" src="./js/directive.js"></script>
