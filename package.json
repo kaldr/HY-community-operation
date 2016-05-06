@@ -10,6 +10,7 @@
     "dependencies": {
         "angular": "",
         "angular-cookies": "",
+        "fontawesome":"",
         "jquery": "",
         "axis": "",
         "bootstrap": "",
