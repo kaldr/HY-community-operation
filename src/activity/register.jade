@@ -27,23 +27,32 @@ html(lang="zh")
 					h1.animatedText
 						i.gift.icon
 						span#titleText 飞扬流量红包大派送
-			#middleIntro.ui.vetical.stripe.segment.hide
-				.ui.middle.aligend.stackable.grid.container
+			#middleIntro.ui.vetical.stripe.segment
+				.ui.middle.aligned.stackable.grid.container
 					.row
-						.eight.wide.column.center.aligned
+						.eight.wide.column.center.aligned 
 							h3#text.ui.header 输入您的手机号码办理登记
-
-					#input.row.ui.form
-						.eight.wide.column.center.aligned
-							input(name='cellphone' type='number' ng-model="vm.cellphone" placeholder='请输入手机号' required cellphone)
-					#button.row
-						.eight.wide.column.center.aligned
-							button.ui.primary.button 
-								span#buttonText 我要领50M流量
-								i.arrow.right.icon
+							
+					.row
+						form#input.ui.form(name='form')
+							.ui.center.aligned.stackable.grid.container
+								.row
+									.eight.wide.column.center.aligned.field(ng-class="{'error':(form.cellphone.$touched) && (form.cellphone.$error.required || form.cellphone.$error.cellphone)}" )
+										input(name='cellphone'  type='number' ng-model="vm.cellphone" placeholder='请输入手机号' required cellphone)
+							
+								#button.row
+									.eight.wide.column.center.aligned
+										button.ui.primary.button 
+											span#buttonText 我要领50M流量
+											i.arrow.right.icon
+										button.ui.primary.loading.button 
+											span#buttonText 我要领50M流量
+											i.arrow.right.icon
+								
 					.row
 						.eight.wide.column.center.aligned
 							h3#textSuccess.ui.header 您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账
+							
 		script(type='text/javascript' src="./js/jquery.min.js")
 		script(type='text/javascript' src="./js/jquery.lettering-0.6.1.min.js")
 		script(type='text/javascript' src="./js/textillate/jquery.textillate.js")

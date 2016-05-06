@@ -25,22 +25,29 @@
           <h1 class="animatedText"><i class="gift icon"></i><span id="titleText">飞扬流量红包大派送</span></h1>
         </div>
       </div>
-      <div id="middleIntro" class="ui vetical stripe segment hide">
-        <div class="ui middle aligend stackable grid container">
+      <div id="middleIntro" class="ui vetical stripe segment">
+        <div class="ui middle aligned stackable grid container">
           <div class="row">
-            <div class="eight wide column center aligned">
+            <div class="eight wide column center aligned"> 
               <h3 id="text" class="ui header">输入您的手机号码办理登记</h3>
             </div>
           </div>
-          <div id="input" class="row ui form">
-            <div class="eight wide column center aligned">
-              <input name="cellphone" type="number" ng-model="vm.cellphone" placeholder="请输入手机号" required cellphone>
-            </div>
-          </div>
-          <div id="button" class="row">
-            <div class="eight wide column center aligned">
-              <button class="ui primary button"> <span id="buttonText">我要领50M流量</span><i class="arrow right icon"></i></button>
-            </div>
+          <div class="row">
+            <form id="input" name="form" class="ui form">
+              <div class="ui center aligned stackable grid container">
+                <div class="row">
+                  <div ng-class="{'error':(form.cellphone.$touched) &amp;&amp; (form.cellphone.$error.required || form.cellphone.$error.cellphone)}" class="eight wide column center aligned field">
+                    <input name="cellphone" type="number" ng-model="vm.cellphone" placeholder="请输入手机号" required cellphone>
+                  </div>
+                </div>
+                <div id="button" class="row">
+                  <div class="eight wide column center aligned">
+                    <button class="ui primary button"> <span id="buttonText">我要领50M流量</span><i class="arrow right icon"></i></button>
+                    <button class="ui primary loading button"> <span id="buttonText">我要领50M流量</span><i class="arrow right icon"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="row">
             <div class="eight wide column center aligned">
