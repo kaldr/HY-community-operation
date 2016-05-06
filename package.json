@@ -9,13 +9,11 @@
     },
     "dependencies": {
         "angular": "",
+        "angular-cookies": "",
         "jquery": "",
         "axis": "",
-        "semantic-ui": "",
-        "hover.css": "",
-        "fullpage.js": "",
+        "bootstrap": "",
         "animate.css": "",
-        "scrollmagic": "",
         "gsap": ""
     },
     "devDependencies": {
