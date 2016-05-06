@@ -6,46 +6,49 @@ html(lang="zh")
 		meta(charset="UTF-8")
 		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/reset.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/container.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/grid.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/header.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/icon.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/image.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/segment.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/form.min.css')
-		link(rel='stylesheet' type='text/css' href='./semantic-ui/dist/components/button.min.css')
+		link(rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css')
+		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
 		link(rel='stylesheet' type='text/css' href='./css/register.css')
 		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
 		script(type='text/javascript' src="./js/angular.min.js")
+		script(type='text/javascript' src="./js/angular-cookies.min.js")
 
-	body(ng-app="register" ng-controller="registerController as vm")
-		.context-wrapper
-			#topIntro.ui.inverted.blue.vertical.masthead.center.aligned.segment 
-				#intro.ui.text.container
+
+	body(ng-app="register" ng-controller="registerController as vm" ng-cloak)
+		#topIntro.container
+			.row
+				#intro.col-xs-12
 					img.title(src="./img/title.svg")
-					h1.animatedText
-						i.gift.icon
-						span#titleText 飞扬流量红包大派送
-			#middleIntro.ui.vetical.stripe.segment.hide
-				.ui.middle.aligend.stackable.grid.container
-					.row
-						.eight.wide.column.center.aligned
-							h3#text.ui.header 输入您的手机号码办理登记
+					h2#titleText.animatedText 飞扬流量红包大派送
 
-					#input.row.ui.form
-						.eight.wide.column.center.aligned
-							input(name='cellphone' type='number' ng-model="vm.cellphone" placeholder='请输入手机号' required cellphone)
-					#button.row
-						.eight.wide.column.center.aligned
-							button.ui.primary.button 
-								span#buttonText 我要领50M流量
-								i.arrow.right.icon
-					.row
-						.eight.wide.column.center.aligned
-							h3#textSuccess.ui.header 您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账
+		#joined.container(ng-show='vm.registered')
+			.row
+				.col-xs-10.col-xs-offset-1
+					h1#successIcon 
+						i.glyphicon.glyphicon-ok
+					h4#successText 您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账
+
+		#join.container(ng-hide='vm.registered')
+			form.form-horizontal(name='form' novalidate)
+				.row(ng-hide="vm.registered")
+					.col-xs-10.col-xs-offset-1
+						#input.form-group(ng-class="{'has-error':(form.cellphone.$touched || form.$submitted)&&(form.cellphone.$error.required || form.cellphone.$error.cellphone)}")
+							input.form-control.input-lg( name="cellphone" type="text" ng-model='vm.cellphone' placeholder='请输入手机号' ng-blur='vm.checkPhone()' required cellphone)
+				.row(ng-hide="vm.registered")
+					.col-xs-10.col-xs-offset-1
+						.form-group
+							button.btn.btn-success.button( type='submit' ng-click="vm.joinGame()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>")
+								span#buttonText 我要领100M流量
+								i.glyphicon.glyphicon-menu-right
+				.row
+					.col-xs-10.col-xs-offset-1.introduction
+						p#introtext1 前1000名可以领取流量红包
+						p#introtext2 仅限移动用户，每号一次
+
+
 		script(type='text/javascript' src="./js/jquery.min.js")
 		script(type='text/javascript' src="./js/jquery.lettering-0.6.1.min.js")
+		script(type='text/javascript' src="./bootstrap/dist/js/bootstrap.min.js")
 		script(type='text/javascript' src="./js/textillate/jquery.textillate.js")
 		script(type='text/javascript' src="./js/register.js")
 		script(type='text/javascript' src="./js/directive.js")
