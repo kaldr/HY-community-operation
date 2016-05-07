@@ -3,88 +3,111 @@ request = {
     method: "POST",
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    },
-    transformRequest: (data)->
+    } ,
+    transformRequest: (data) ->
         $.param(data)
 }
+accesslogData =
+    activity: "邵飞国母亲节送流量活动",
+    height: $(window).height()
+    width: $(window).width()
+
+$.post 'http://erp.iflying.com/common/Access/getUserAccessLog', accesslogData
+
 #animace css
 $.fn.extend {
-    animateCss: (animationName,callback)->
+    animateCss: (animationName, callback) ->
         animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        $(this).addClass('animated ' + animationName).one(animationEnd, ()->
-            $(this).removeClass('animated ' + animationName);
+        $(this).addClass('animated ' + animationName).one(animationEnd, () ->
+            $(this).removeClass('animated ' + animationName)
             callback?()
         )
 }
 
 angular.module 'register',['ngCookies']
-registerController=(userJoinActivity,$scope,$rootScope,$cookies)->
-    vm=this
-    vm.loading=false
-    vm.activityID='572c39a48695557942311544'
-    vm.user=
-        activityID:vm.activityID
-    showSuccessText=()->
+registerController = (userJoinActivity, $scope, $rootScope, $cookies) ->
+    vm = this
+    vm.loading = false
+    vm.activityID = '572c39a48695557942311544'
+    vm.user =
+        activityID: vm.activityID
+
+    checkAge=()->
+        $ageinput = $ '#join form #ageInput'
+            .removeClass 'animated'
+            .removeClass 'shake'
+        if $scope.form.age.$error.required
+            $ageinput.removeClass 'animated'
+                .removeClass 'shake'
+                .animateCss 'shake'
+            return false
+        true
+    vm.checkAge=checkAge
+
+    showSuccessText = () ->
         $ '#successText'
             .show()
             .textillate {
-                in:{
-                    effect:'zoomIn',
-                    shuffle:true,
-                    delay:10
+                in: {
+                    effect: 'zoomIn',
+                    shuffle: true,
+                    delay: 10
                 }
             }
         false
-    showSuccessIcon=()->
+    showSuccessIcon = () ->
         $ "#successIcon"
             .show()
-            .animateCss "bounceIn",showSuccessText
+            .animateCss "bounceIn", showSuccessText
         false
     #成功加入
-    successCallback=(response)->
-        if response.code==700
-            vm.registered=true
+    successCallback = (response) ->
+        if response.code == 700
+            vm.registered = true
 
             showSuccessIcon()
-            $cookies.put 'cellphone',vm.cellphone
+            $cookies.put 'cellphone', vm.cellphone
             false
     #领取流量
-    joinGame=()->
-        if checkPhone()
-            vm.user.cellphone=vm.cellphone
+    joinGame = () ->
+        phoneOK=checkPhone()
+        ageOK=checkAge()
+        if phoneOK && ageOK
+            vm.user.cellphone = vm.cellphone
+            vm.user.age=vm.age
             console.log 'in this'
-            $btn=$ '.button'
+            $btn = $ '.button'
             $btn.button "loading"
-            userJoinActivity vm.user,successCallback
+            userJoinActivity vm.user, successCallback
         false
-    vm.joinGame=joinGame
+    vm.joinGame = joinGame
 
     #检查用户状态
-    checkUserStatus=()->
-        cellphone=$cookies.get("cellphone")
+    checkUserStatus = () ->
+        cellphone = $cookies.get("cellphone")
         console.log cellphone
         if cellphone
-            vm.registered=true
+            vm.registered = true
             showSuccessIcon()
         false
-    vm.checkUserStatus=checkUserStatus
+    vm.checkUserStatus = checkUserStatus
 
     #保存用户到cookie中
-    saveUserToCookie=()->
+    saveUserToCookie = () ->
         false
-    vm.saveUserToCookie=saveUserToCookie
+    vm.saveUserToCookie = saveUserToCookie
 
     #删除动画类
-    removeAnimate=()->
+    removeAnimate = () ->
         $ '#join form #input'
             .removeClass 'animated'
             .removeClass 'shake'
         false
-    vm.removeAnimate=removeAnimate
+    vm.removeAnimate = removeAnimate
 
     #检查手机状态
-    checkPhone=()->
-        $input=$ '#join form #input'
+    checkPhone = () ->
+        $input = $ '#join form #input'
         #    .removeClass 'animated'
         #    .removeClass 'shake'
         if ($scope.form.cellphone.$error.required || $scope.form.cellphone.$error.cellphone)
@@ -93,47 +116,47 @@ registerController=(userJoinActivity,$scope,$rootScope,$cookies)->
                 .animateCss 'shake'
             return false
         true
-    vm.checkPhone=checkPhone
+    vm.checkPhone = checkPhone
 
 
-    activate=()->
-        titleAni=()->
+    activate = () ->
+        titleAni = () ->
             $("#titleText").show()
             $("#titleText").textillate {
-                in:{
-                    effect:'zoomInDown',
-                    shuffle:true,
-                    delay:50
+                in: {
+                    effect: 'zoomInDown',
+                    shuffle: true,
+                    delay: 50
                 }
             }
-        successAni=()->
+        successAni = () ->
             $("#textSuccess").show()
             $("#textSuccess").textillate {
-                in:{
-                    effect:'zoomInDown',
-                    shuffle:true,
-                    delay:50
+                in: {
+                    effect: 'zoomInDown',
+                    shuffle: true,
+                    delay: 50
                 }
             }
-        introAni=()->
+        introAni = () ->
             $('#introtext1').show()
             $('#introtext1').textillate {
-                in:{
-                    effect:'rotateInUpLeft',
-                    delay:50
+                in: {
+                    effect: 'rotateInUpLeft',
+                    delay: 50
                 }
             }
             $('#introtext2').show()
             $('#introtext2').textillate {
-                in:{
-                    effect:'rotateInUpLeft',
-                    delay:50
+                in: {
+                    effect: 'rotateInUpLeft',
+                    delay: 50
                 }
             }
-        buttonAni=()->
+        buttonAni = () ->
             $ '.button'
                 .animateCss 'bounceIn'
-        inputAni=()->
+        inputAni = () ->
             $ 'input'
                 .focus()
             #$ "input"
@@ -146,18 +169,18 @@ registerController=(userJoinActivity,$scope,$rootScope,$cookies)->
 
 #控制器
 angular.module 'register'
-    .controller "registerController",registerController
+    .controller "registerController", registerController
 
 #加入活动
 angular.module "register"
-    .factory 'userJoinActivity', ($http)->
+    .factory 'userJoinActivity', ($http) ->
 
-        (data, callback)->
+        (data, callback) ->
             request.method = "POST";
             request.url = activityAPI + "bindUserToActivity";
             request.data = data
-            successCallback=(data, status, headers, config)->
+            successCallback = (data, status, headers, config) ->
                 callback(data.data)
-            failCallback=successCallback
+            failCallback = successCallback
             $http request
-                .then successCallback,failCallback
+                .then successCallback, failCallback

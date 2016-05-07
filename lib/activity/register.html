@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="http://img0.vbooking.net/favicon.ico">
     <link rel="stylesheet" type="text/css" href="./fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/register.css">
@@ -32,6 +33,13 @@
       <form name="form" novalidate class="form-horizontal">
         <div ng-hide="vm.registered" class="row">
           <div class="col-xs-10 col-xs-offset-1">
+            <div id="ageInput" ng-class="{'has-error':(form.age.$touched || form.$submitted)&amp;&amp;(form.age.$error.required)}" class="form-group">
+              <input name="age" type="number" ng-model="vm.age" placeholder="请输入年龄" ng-blur="vm.checkAge()" required class="form-control input-lg">
+            </div>
+          </div>
+        </div>
+        <div ng-hide="vm.registered" class="row">
+          <div class="col-xs-10 col-xs-offset-1">
             <div id="input" ng-class="{'has-error':(form.cellphone.$touched || form.$submitted)&amp;&amp;(form.cellphone.$error.required || form.cellphone.$error.cellphone)}" class="form-group">
               <input name="cellphone" type="text" ng-model="vm.cellphone" placeholder="请输入手机号" ng-blur="vm.checkPhone()" required cellphone class="form-control input-lg">
             </div>
@@ -44,13 +52,15 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-10 col-xs-offset-1 introduction">
-            <p id="introtext1">前1000名可以领取流量红包</p>
-            <p id="introtext2">仅限移动用户，每号一次</p>
-          </div>
-        </div>
       </form>
+    </div>
+    <div id="bottomIntro" class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 introduction">
+          <p id="introtext1">前1000名可以领取流量红包</p>
+          <p id="introtext2">仅限移动用户，每号一次</p>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/jquery.lettering-0.6.1.min.js"></script>
