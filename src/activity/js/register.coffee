@@ -25,7 +25,8 @@ $.fn.extend {
 }
 
 angular.module 'register',['ngCookies']
-registerController = (userJoinActivity, $scope, $rootScope, $cookies) ->
+
+registerController = (userJoinActivity,getUserList, $scope, $rootScope, $cookies) ->
     vm = this
     vm.loading = false
     vm.activityID = '572c39a48695557942311544'
@@ -92,6 +93,16 @@ registerController = (userJoinActivity, $scope, $rootScope, $cookies) ->
         false
     vm.checkUserStatus = checkUserStatus
 
+    #获取用户列表
+    getUsers=()->
+        data=
+            activityID:vm.activityID
+        loadUserToScreen=(response)->
+            vm.users=response.data
+            console.log response
+        getUserList data,loadUserToScreen
+        false
+    vm.getUsers=getUsers
     #保存用户到cookie中
     saveUserToCookie = () ->
         false
@@ -171,10 +182,22 @@ registerController = (userJoinActivity, $scope, $rootScope, $cookies) ->
 angular.module 'register'
     .controller "registerController", registerController
 
+#获取用户列表
+angular.module 'register'
+    .factory 'getUserList',($http)->
+        (data,callback)->
+            request.method = "POST";
+            request.url = activityAPI + "getActivityUsers";
+            request.data = data
+            successCallback=(data, status, headers, config)->
+                callback(data.data)
+            failCallback=successCallback
+            $http request
+                .then successCallback,failCallback
+            false
 #加入活动
 angular.module "register"
     .factory 'userJoinActivity', ($http) ->
-
         (data, callback) ->
             request.method = "POST";
             request.url = activityAPI + "bindUserToActivity";
@@ -184,3 +207,4 @@ angular.module "register"
             failCallback = successCallback
             $http request
                 .then successCallback, failCallback
+            false
