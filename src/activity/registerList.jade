@@ -1,0 +1,45 @@
+//output: ../../lib/activity/registerList.html
+doctype html
+html(lang="zh")
+	head
+		title 流量红包大派送
+		meta(charset="UTF-8")
+		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+		link(rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css')
+		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
+		link(rel='stylesheet' type='text/css' href='./css/register.css')
+		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		script(type='text/javascript' src="./js/angular.min.js")
+		script(type='text/javascript' src="./js/angular-cookies.min.js")
+
+
+	body(ng-app="register" ng-controller="registerController as vm" ng-cloak)
+		#topIntro.container
+			.row
+				#intro.col-xs-12
+					img.title(src="./img/title.svg")
+					h2#titleText.animatedText 飞扬流量红包大派送
+
+		.container
+			.row
+				.col-xs-10.col-xs-offset-1
+					table.table(ng-init='vm.getUsers()')
+						tr
+							th 序号
+							th 年龄
+							th 手机号
+							th 申请时间
+						tr(ng-repeat="user in vm.users | orderBy : '-bindTime'")
+							th {{$index+1}}
+							th {{user.age}}
+							th {{user.cellphone}}
+							th {{user.bindTime*1000|date:"yyyy-MM-dd HH:mm:ss"}}
+
+
+		script(type='text/javascript' src="./js/jquery.min.js")
+		script(type='text/javascript' src="./js/jquery.lettering-0.6.1.min.js")
+		script(type='text/javascript' src="./bootstrap/dist/js/bootstrap.min.js")
+		script(type='text/javascript' src="./js/textillate/jquery.textillate.js")
+		script(type='text/javascript' src="./js/register.js")
+		script(type='text/javascript' src="./js/directive.js")
