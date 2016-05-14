@@ -1,0 +1,38 @@
+//output: ../../lib/welcome/erp.html
+doctype html
+html(lang="zh")
+  head
+    title 飞云ERPv0.1
+    meta(charset="UTF-8")
+    meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+    link(rel="shortcut icon" href="./img/icon.png")
+    link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+    link(rel='stylesheet' type='text/css' href='./impress.js/css/impress-demo.css')
+    script(type='text/javascript' src="./js/jquery.min.js")
+    link(rel='stylesheet' type='text/css' href='./css/erp.css')
+
+  body
+    #buttons
+      a#next next
+      a#prev previous
+    #impress
+      #title.step(data-x=0 data-y=0 data-scale=10)
+        span.try 现在，终于可以让它出现在 
+          strong.rotating 你的面前
+        h1 飞云ERP
+        span.footnote 请不要告诉别人
+      
+      #its.step(data-x=850 data-y=3000 data-rotate=90 data-scale=5)
+        p 
+          |it's a presentation tool 
+          |inspired by the idea behind me
+      #tiny.step(data-x=2825 data-y=2325 data-z=-3000 data-scale=1 data-rotate-x="-40" data-rotate-y="10" )
+        p 
+          |and 
+          b tiny
+          |ideas
+        
+        
+    script(type='text/javascript' src="./impress.js/js/impress.js")
+    script(type="text/javascript" src="./js/erp.js")
