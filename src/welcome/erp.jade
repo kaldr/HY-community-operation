@@ -8,31 +8,97 @@ html(lang="zh")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
     link(rel="shortcut icon" href="./img/icon.png")
     link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
-    link(rel='stylesheet' type='text/css' href='./impress.js/css/impress-demo.css')
     script(type='text/javascript' src="./js/jquery.min.js")
     link(rel='stylesheet' type='text/css' href='./css/erp.css')
-
+    link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
+    //link(rel='stylesheet' type='text/css' href='./Hover/css/hover-min.css')
   body
-    #buttons
-      a#next next
-      a#prev previous
     #impress
-      #title.step(data-x=0 data-y=0 data-scale=10)
-        span.try 现在，终于可以让它出现在 
-          strong.rotating 你的面前
-        h1 飞云ERP
-        span.footnote 请不要告诉别人
-      
-      #its.step(data-x=850 data-y=3000 data-rotate=90 data-scale=5)
-        p 
-          |it's a presentation tool 
-          |inspired by the idea behind me
-      #tiny.step(data-x=2825 data-y=2325 data-z=-3000 data-scale=1 data-rotate-x="-40" data-rotate-y="10" )
-        p 
-          |and 
-          b tiny
-          |ideas
+      #title.step(data-x=0 data-y=0 data-scale=1)
+          img.logo(src='./img/logo.svg')
+          a#startButton.button.hvr-float(href="#intro")
+            span 开启旅程
+            i.fa.fa-arrow-right
+          p.onlineDate 6月3日正式上线
+          
+      #intro.step(data-x=800 data-y=1500 data-rotate=90 data-scale=2)
+        .introText
+          h1 对不起，让大家久等了
+          p.colorGray 经历了一年时间，它终于与大家见面了
+          a#gotoChange.button.hvr-float(href="#changes")
+            span 我们改变了什么
+            i.fa.fa-arrow-right
+        .introImg
+          img.intro(src="./img/01intro.png")
         
+      #changes.step(data-x=2000 data-y=3000 data-z=-500 data-scale=1 data-rotate=-90 )
+        h1 
+          改变的不仅仅是界面 
+          i.fa.fa-paint-brush
+        h2 还有
+          span 
+            效率 
+            i.fa.fa-dashboard
+          span 
+            架构 
+            i.fa.fa-sitemap
+          span 
+            规范 
+            i.fa.fa-legal
+          span 
+            速度 
+            i.fa.fa-space-shuttle 
+        a#gotoBPMN.button.hvr-float(href="#BPMN")
+          span 从流程设计开始
+          i.fa.fa-arrow-right
+          
+      #BPMN.step(data-x=4500 data-y=3000 data-rotate=90 data-scale=5)  
+        h1 
+          strong 39 
+          个角色  
+          i.fa.fa-user-secret
+        h1
+          strong 248 
+          个职能  
+          i.fa.fa-group
+        h1
+          strong 927 
+          个业务环节  
+          i.fa.fa-exchange
+        img.bpmn(src="./img/04timeline.svg")
+        a#gotoBPMNDiagram.button.hvr-float(href="#BPMNDiagram")
+          span 下一步：流程图
+          i.fa.fa-arrow-right
+      #BPMNDiagram.step(data-x=6500 data-y=8000 data-z=-500 data-rotate-x=180 data-rotate-y=90 data-scale=1)  
+        img.bpmn(src="./img/04flow.png")
+        h1 
+          strong 375 
+          张BPMN业务逻辑图 
+        h4 6个月的架构与产品设计（2015年6月-11月）
+        h4 业务流程全部通过绘制BPMN图进行设计存档，并将BPMN图自动导成程序
+        a#gotoDesign.button.hvr-float(href="#design")
+          span 下一步：UI设计图
+          i.fa.fa-arrow-right
+      #design.step(data-x=16500 data-y=4000 data-rotate=180 data-scale=10) 
+        p 100多个原型稿，299张设计图
+        a#gotoDevelopment.button.hvr-float(href="#developmentD")
+          span 下一步：程序开发
+          i.fa.fa-arrow-right
+      #development.step(data-x=28500 data-y=5000 data-rotate=180 data-scale=8)
+        p 2015年12月20日，开发正式启动
+        p 200个php程序，共行代码，这些代码用五号字打印，可以绕地球赤道2圈
+        p 32000次版本提交
+        p PHP、.net、Java、NodeJS、Shell、Python、Coffee、Jade
+        p Nginx、MongoDB、AngularJS、jQuery、Bootstrap、Bower、SemanticUI、Moment、Bower、pm2、async、Lodash、underscore等50多个工具
+      #staff.step(data-x=53500 data-y=7000 data-rotate=180 data-scale=2)
+        h1 累计加班1500小时
+        
+          
+      #login.step(data-x=79500 data-y=8000 data-rotate=270 data-scale=5 )
+        h1 登录
+        input(type='text' value="用户名")
+        input(type='password' value='密码')
+      
         
     script(type='text/javascript' src="./impress.js/js/impress.js")
     script(type="text/javascript" src="./js/erp.js")
