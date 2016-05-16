@@ -130,12 +130,14 @@ html(lang="zh")
 
 			#login.step(data-x=19500 data-y=25000 data-rotate=90  data-z=300 data-scale=15 )
 				img.logo(src='./img/logo.svg')
-				form.login(method='post' action="http://erp.iflying.com/common/user/login")
-					input(type='text' value="用户名")
-					input(type='password' value='123')
-					button.button(type='submit')
+				form.login
+					input.username(type='text' value="用户名")
+					input.password(type='password' value='123')
+					button.button.submit(type='submit')
 						span 登 录 
 						i.fa.fa-arrow-right
+					button.button.loading(type='submit')
+						span 登 录 
 						i.fa.fa-spinner.fa-pulse
 
 
