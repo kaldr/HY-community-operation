@@ -1,0 +1,2 @@
+api=impress()
+api.init()
