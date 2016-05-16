@@ -1,104 +1,143 @@
 //output: ../../lib/welcome/erp.html
 doctype html
 html(lang="zh")
-  head
-    title 飞云ERPv0.1
-    meta(charset="UTF-8")
-    meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
-    link(rel="shortcut icon" href="./img/icon.png")
-    link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
-    script(type='text/javascript' src="./js/jquery.min.js")
-    link(rel='stylesheet' type='text/css' href='./css/erp.css')
-    link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
-    //link(rel='stylesheet' type='text/css' href='./Hover/css/hover-min.css')
-  body
-    #impress
-      #title.step(data-x=0 data-y=0 data-scale=1)
-          img.logo(src='./img/logo.svg')
-          a#startButton.button.hvr-float(href="#intro")
-            span 开启旅程
-            i.fa.fa-arrow-right
-          p.onlineDate 6月3日正式上线
-          
-      #intro.step(data-x=0 data-y=1500 data-rotate=90 data-scale=2)
-        .introText
-          h1 对不起，让大家久等了
-          p.colorGray 经历了一年时间，它终于与大家见面了
-          a#gotoChange.button.hvr-float(href="#changes")
-            span 我们改变了什么
-            i.fa.fa-arrow-right
-        .introImg
-          img.intro(src="./img/01intro.png")
-        
-      #changes.step(data-x=2000 data-y=3000 data-z=-500 data-scale=1 data-rotate=-90 )
-        h1 
-          改变的不仅仅是界面 
-          i.fa.fa-paint-brush
-        h2 还有
-          span 
-            效率 
-            i.fa.fa-dashboard
-          span 
-            架构 
-            i.fa.fa-sitemap
-          span 
-            规范 
-            i.fa.fa-legal
-          span 
-            速度 
-            i.fa.fa-space-shuttle 
-        a#gotoBPMN.button.hvr-float(href="#BPMN")
-          span 从流程设计开始
-          i.fa.fa-arrow-right
-          
-      #BPMN.step(data-x=4500 data-y=3000 data-rotate=90 data-scale=5)  
-        h1 
-          strong 39 
-          个角色  
-          i.fa.fa-user-secret
-        h1
-          strong 248 
-          个职能  
-          i.fa.fa-group
-        h1
-          strong 927 
-          个业务环节  
-          i.fa.fa-exchange
-        img.bpmn(src="./img/04timeline.svg")
-        a#gotoBPMNDiagram.button.hvr-float(href="#BPMNDiagram")
-          span 下一步：流程图
-          i.fa.fa-arrow-right
-      #BPMNDiagram.step(data-x=6500 data-y=8000 data-z=-500 data-rotate-x=180 data-rotate-y=90 data-scale=1)  
-        img.bpmn(src="./img/04flow.png")
-        h1 
-          strong 375 
-          张BPMN业务逻辑图 
-        h4 6个月的架构与产品设计（2015年6月-11月）
-        h4 业务流程全部通过绘制BPMN图进行设计存档，并将BPMN图自动导成程序
-        a#gotoDesign.button.hvr-float(href="#design")
-          span 下一步：UI设计图
-          i.fa.fa-arrow-right
-      #design.step(data-x=16500 data-y=4000 data-rotate=180 data-scale=10) 
-        p 100多个原型稿，299张设计图
-        a#gotoDevelopment.button.hvr-float(href="#developmentD")
-          span 下一步：程序开发
-          i.fa.fa-arrow-right
-      #development.step(data-x=28500 data-y=5000 data-rotate=180 data-scale=8)
-        p 2015年12月20日，开发正式启动
-        p 200个php程序，共行代码，这些代码用五号字打印，可以绕地球赤道2圈
-        p 32000次版本提交
-        p PHP、.net、Java、NodeJS、Shell、Python、Coffee、Jade
-        p Nginx、MongoDB、AngularJS、jQuery、Bootstrap、Bower、SemanticUI、Moment、Bower、pm2、async、Lodash、underscore等50多个工具
-      #staff.step(data-x=53500 data-y=7000 data-rotate=180 data-scale=2)
-        h1 累计加班1500小时
-        
-          
-      #login.step(data-x=79500 data-y=8000 data-rotate=270 data-scale=5 )
-        h1 登录
-        input(type='text' value="用户名")
-        input(type='password' value='密码')
-      
-        
-    script(type='text/javascript' src="./impress.js/js/impress.js")
-    script(type="text/javascript" src="./js/erp.js")
+	head
+		title 飞云ERPv0.1
+		meta(charset="UTF-8")
+		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+		link(rel="shortcut icon" href="./img/icon.png")
+		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		script(type='text/javascript' src="./js/jquery.min.js")
+		link(rel='stylesheet' type='text/css' href='./css/erp.css')
+		link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
+		//link(rel='stylesheet' type='text/css' href='./Hover/css/hover-min.css')
+	body
+		#impress
+			#title.step(data-x=0 data-y=0 data-scale=1)
+				img.logo(src='./img/logo.svg')
+				a#startButton.button.hvr-float(href="#intro")
+					span 开启旅程
+					i.fa.fa-arrow-right
+				p.onlineDate 6月3日正式上线
+
+			#intro.step(data-x=0 data-y=1500 data-rotate=90 data-scale=2)
+				.introText
+					h1 对不起，让大家久等了
+					p.colorGray 经历了一年时间，它终于与大家见面了
+					a#gotoChange.button.hvr-float(href="#changes")
+						span 我们改变了什么
+						i.fa.fa-arrow-right
+				.introImg
+					img.intro(src="./img/01intro.png")
+
+			#changes.step(data-x=1500 data-y=3000 data-z=-500 data-scale=3 data-rotate=180 )
+				h1 
+					改变的不仅仅是界面 
+					i.fa.fa-paint-brush
+				h2 还有
+					span 
+						效率 
+						i.fa.fa-dashboard
+					span 
+						架构 
+						i.fa.fa-sitemap
+					span 
+						规范 
+						i.fa.fa-legal
+					span 
+						速度 
+						i.fa.fa-space-shuttle 
+				a#gotoBPMN.button.hvr-float(href="#BPMN")
+					span 从流程设计开始
+					i.fa.fa-arrow-right
+
+			#BPMN.step(data-x=4500 data-y=5000 data-rotate=90 data-scale=1)  
+				h1 
+					strong 39 
+					个角色  
+					i.fa.fa-user-secret
+				h1
+					strong 248 
+					个职能  
+					i.fa.fa-group
+				h1
+					strong 927 
+					个业务环节  
+					i.fa.fa-exchange
+				img.bpmn(src="./img/04timeline.svg")
+				a#gotoBPMNDiagram.button.hvr-float(href="#BPMNDiagram")
+					span 下一步：流程图
+					i.fa.fa-arrow-right
+
+			#BPMNDiagram.step(data-x=6500 data-y=8000 data-z=-500 data-rotate=180 data-scale=1)  
+				img.bpmn(src="./img/04flow.png")
+				h1 
+					strong 375 
+					张BPMN业务逻辑图 
+				h4 6个月的架构与产品设计（2015年6月-11月）
+				h4 业务流程全部通过绘制BPMN图进行设计存档，并将BPMN图自动导成程序
+				a#gotoDesign.button.hvr-float(href="#design")
+					span 下一步：UI设计图
+					i.fa.fa-arrow-right
+
+			#design.step(data-x=16500 data-y=4000 data-rotate=180 data-scale=10) 
+				h1
+					strong 146 
+					个原型稿，
+					strong 739 
+					张设计图
+				a#gotoDevelopment.button.hvr-float(href="#development")
+					span 下一步：程序开发
+					i.fa.fa-arrow-right
+
+			#development.step(data-x=16500 data-y=10000 data-rotate=90 data-scale=1)
+				.text
+					h1 
+						i.fa.fa-file-code-o 
+						strong 12000 
+						|个程序文件
+					h1
+						i.fa.fa-folder-open 
+						strong 250M 
+						|程序
+					h1
+						i.fa.fa-github 
+						strong 33000 
+						|次版本提交
+					h4 小四字打印后，相当于
+						span 宁波
+						|到
+						span 钓鱼岛
+						|的距离
+				.button
+					a#gotoStaff.button.hvr-float(href="#staff")
+						span 看职员表
+						i.fa.fa-arrow-right
+
+			#staff.step(data-x=19500 data-y=11000 data-rotate=180 data-scale=3)
+				h1 
+					|累计加班1500小时 
+					i.fa.fa-group
+				h4 
+					|相当于整个部门每年多上 
+					span 一个月 
+					|的班
+				img(src='./img/07team.png')
+				a#gotologin.button.hvr-float(href="#login")
+					span 马上登录
+					i.fa.fa-arrow-right
+
+			#login.step(data-x=19500 data-y=25000 data-rotate=90  data-z=300 data-scale=15 )
+				img.logo(src='./img/logo.svg')
+				form.login(method='post' action="http://erp.iflying.com/common/user/login")
+					input(type='text' value="用户名")
+					input(type='password' value='123')
+					button.button(type='submit')
+						span 登 录 
+						i.fa.fa-arrow-right
+						i.fa.fa-spinner.fa-pulse
+
+
+		script(type='text/javascript' src="./impress.js/js/impress.js")
+		script(type="text/javascript" src="./js/erp.js")
