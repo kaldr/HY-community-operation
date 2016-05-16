@@ -24,7 +24,7 @@
         </div>
         <div class="introImg"><img src="./img/01intro.png" class="intro"></div>
       </div>
-      <div id="changes" data-x='2000' data-y='3000' data-z='-500' data-scale='1' data-rotate='-90' class="step">
+      <div id="changes" data-x='1500' data-y='3000' data-z='-500' data-scale='3' data-rotate='180' class="step">
         <h1>
            
           改变的不仅仅是界面 <i class="fa fa-paint-brush"></i>
@@ -39,33 +39,44 @@
              
             速度 <i class="fa fa-space-shuttle"> </i></span></h2><a id="gotoBPMN" href="#BPMN" class="button hvr-float"><span>从流程设计开始</span><i class="fa fa-arrow-right"></i></a>
       </div>
-      <div id="BPMN" data-x='4500' data-y='3000' data-rotate='90' data-scale='5' class="step"> 
+      <div id="BPMN" data-x='4500' data-y='5000' data-rotate='90' data-scale='1' class="step"> 
         <h1> <strong>39 </strong>个角色  <i class="fa fa-user-secret"></i></h1>
         <h1><strong>248 </strong>个职能  <i class="fa fa-group"></i></h1>
         <h1><strong>927 </strong>个业务环节  <i class="fa fa-exchange"></i></h1><img src="./img/04timeline.svg" class="bpmn"><a id="gotoBPMNDiagram" href="#BPMNDiagram" class="button hvr-float"><span>下一步：流程图</span><i class="fa fa-arrow-right"></i></a>
       </div>
-      <div id="BPMNDiagram" data-x='6500' data-y='8000' data-z='-500' data-rotate-x='180' data-rotate-y='90' data-scale='1' class="step"> <img src="./img/04flow.png" class="bpmn">
+      <div id="BPMNDiagram" data-x='6500' data-y='8000' data-z='-500' data-rotate='180' data-scale='1' class="step"> <img src="./img/04flow.png" class="bpmn">
         <h1> <strong>375 </strong>张BPMN业务逻辑图 </h1>
         <h4>6个月的架构与产品设计（2015年6月-11月）</h4>
         <h4>业务流程全部通过绘制BPMN图进行设计存档，并将BPMN图自动导成程序</h4><a id="gotoDesign" href="#design" class="button hvr-float"><span>下一步：UI设计图</span><i class="fa fa-arrow-right"></i></a>
       </div>
       <div id="design" data-x='16500' data-y='4000' data-rotate='180' data-scale='10' class="step"> 
-        <p>100多个原型稿，299张设计图</p><a id="gotoDevelopment" href="#developmentD" class="button hvr-float"><span>下一步：程序开发</span><i class="fa fa-arrow-right"></i></a>
+        <h1><strong>146 </strong>个原型稿，<strong>739 </strong>张设计图</h1><a id="gotoDevelopment" href="#development" class="button hvr-float"><span>下一步：程序开发</span><i class="fa fa-arrow-right"></i></a>
       </div>
-      <div id="development" data-x='28500' data-y='5000' data-rotate='180' data-scale='8' class="step">
-        <p>2015年12月20日，开发正式启动</p>
-        <p>200个php程序，共行代码，这些代码用五号字打印，可以绕地球赤道2圈</p>
-        <p>32000次版本提交</p>
-        <p>PHP、.net、Java、NodeJS、Shell、Python、Coffee、Jade</p>
-        <p>Nginx、MongoDB、AngularJS、jQuery、Bootstrap、Bower、SemanticUI、Moment、Bower、pm2、async、Lodash、underscore等50多个工具</p>
+      <div id="development" data-x='16500' data-y='10000' data-rotate='90' data-scale='1' class="step">
+        <div class="text">
+          <h1> <i class="fa fa-file-code-o"> </i><strong>12000 </strong>个程序文件</h1>
+          <h1><i class="fa fa-folder-open"> </i><strong>250M </strong>程序</h1>
+          <h1><i class="fa fa-github"> </i><strong>33000 </strong>次版本提交</h1>
+          <h4>小四字打印后，相当于<span>宁波</span>到<span>钓鱼岛</span>的距离</h4>
+        </div>
+        <div class="button"><a id="gotoStaff" href="#staff" class="button hvr-float"><span>看职员表</span><i class="fa fa-arrow-right"></i></a></div>
       </div>
-      <div id="staff" data-x='53500' data-y='7000' data-rotate='180' data-scale='2' class="step">
-        <h1>累计加班1500小时</h1>
+      <div id="staff" data-x='19500' data-y='11000' data-rotate='180' data-scale='3' class="step">
+        <h1>
+           
+          累计加班1500小时 <i class="fa fa-group"></i>
+        </h1>
+        <h4>
+           
+          相当于整个部门每年多上 <span>一个月 </span>的班
+        </h4><img src="./img/07team.png"><a id="gotologin" href="#login" class="button hvr-float"><span>马上登录</span><i class="fa fa-arrow-right"></i></a>
       </div>
-      <div id="login" data-x='79500' data-y='8000' data-rotate='270' data-scale='5' class="step">
-        <h1>登录</h1>
-        <input type="text" value="用户名">
-        <input type="password" value="密码">
+      <div id="login" data-x='19500' data-y='25000' data-rotate='90' data-z='300' data-scale='15' class="step"><img src="./img/logo.svg" class="logo">
+        <form method="post" action="http://erp.iflying.com/common/user/login" class="login">
+          <input type="text" value="用户名">
+          <input type="password" value="123">
+          <button type="submit" class="button"><span>登 录 </span><i class="fa fa-arrow-right"></i><i class="fa fa-spinner fa-pulse"></i></button>
+        </form>
       </div>
     </div>
     <script type="text/javascript" src="./impress.js/js/impress.js"></script>
