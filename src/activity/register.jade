@@ -21,6 +21,12 @@ html(lang="zh")
 					img.title(src="./img/title.svg")
 					h2#titleText.animatedText 飞扬流量红包大派送
 
+		.container(ng-show="vm.end")
+			.row
+				.col-xs-10.col-xs-offset-1
+					h1#successIcon 
+						i.glyphicon.glyphicon-star
+					h4 活动已经结束
 		#joined.container(ng-show='vm.registered')
 			.row
 				.col-xs-10.col-xs-offset-1
@@ -28,7 +34,7 @@ html(lang="zh")
 						i.glyphicon.glyphicon-ok
 					h4#successText 您已成功办理飞扬旅游流量红包活动，流量将在2个工作日内到账
 
-		#join.container(ng-hide='vm.registered')
+		#join.container(ng-hide='vm.registered||vm.end')
 			form.form-horizontal(name='form' novalidate)
 				.row(ng-hide="vm.registered")
 					.col-xs-10.col-xs-offset-1

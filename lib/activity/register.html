@@ -21,6 +21,14 @@
         </div>
       </div>
     </div>
+    <div ng-show="vm.end" class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <h1 id="successIcon"> <i class="glyphicon glyphicon-star"></i></h1>
+          <h4>活动已经结束</h4>
+        </div>
+      </div>
+    </div>
     <div id="joined" ng-show="vm.registered" class="container">
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
@@ -29,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div id="join" ng-hide="vm.registered" class="container">
+    <div id="join" ng-hide="vm.registered||vm.end" class="container">
       <form name="form" novalidate class="form-horizontal">
         <div ng-hide="vm.registered" class="row">
           <div class="col-xs-10 col-xs-offset-1">

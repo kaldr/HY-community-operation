@@ -32,7 +32,7 @@ registerController = (userJoinActivity,getUserList, $scope, $rootScope, $cookies
     vm.activityID = '572c39a48695557942311544'
     vm.user =
         activityID: vm.activityID
-
+    vm.end=true
     checkAge=()->
         $ageinput = $ '#join form #ageInput'
             .removeClass 'animated'
