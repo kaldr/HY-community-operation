@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>飞云ERPv0.1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="./img/icon.png">
+    <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/erp.css">
+    <link rel="stylesheet" type="text/css" href="./fontawesome/css/font-awesome.min.css">
+    <!--link(rel='stylesheet' type='text/css' href='./Hover/css/hover-min.css')-->
+  </head>
+  <body>
+    <div id="impress">
+      <div id="title" data-x='0' data-y='0' data-scale='1' class="step"><img src="./img/logo.svg" class="logo"><a id="startButton" href="#intro" class="button hvr-float"><span>开启旅程</span><i class="fa fa-arrow-right"></i></a>
+        <p class="onlineDate">6月3日正式上线</p>
+      </div>
+      <div id="intro" data-x='0' data-y='1500' data-rotate='90' data-scale='2' class="step">
+        <div class="introText">
+          <h1>
+             
+            重新构建操作界面 <i class="fa fa-paint-brush"></i>
+          </h1>
+          <p class="colorGray">.</p>
+          <p class="colorGray">1. 适应屏幕</p>
+          <p class="colorGray">2. 操作面板</p>
+          <p class="colorGray">.</p><a id="gotoChange" href="#changes" class="button hvr-float"><span>下一步</span><i class="fa fa-arrow-right"></i></a>
+        </div>
+        <div class="introImg"><img src="./img/01intro.png" class="intro"></div>
+      </div>
+      <div id="changes" data-x='1500' data-y='3000' data-scale='3' data-rotate='180' class="step">
+        <h1>
+           
+          操作方式  <i class="fa fa-dashboard"></i>
+        </h1>
+        <h2><span>
+             
+            精简菜单 <i class="fa fa-list"></i></span><span>
+             
+            避免跳转 <i class="fa fa-chain-broken"></i></span><span>
+             
+            统一交互 <i class="fa fa-mouse-pointer"></i></span><span>
+             
+            速度提升 <i class="fa fa-space-shuttle"> </i></span></h2><a id="gotoBPMN" href="#BPMNDiagram" class="button hvr-float"><span>下一步</span><i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div id="BPMNDiagram" data-x='3500' data-y='6000' data-rotate='90' data-scale='1' class="step"> <img src="./img/04flow.png" class="bpmn">
+        <h1>
+           
+          尚未重构人资、行政、营销部分
+        </h1>
+        <h4>OA嵌入到新系统中</h4>
+        <h4>6月份开始GTD系统的设计</h4><a id="gotoDesign" href="#development" class="button hvr-float"><span>下一步</span><i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div id="development" data-x='7000' data-y='8000' data-rotate='180' data-scale='3' class="step">
+        <div class="text">
+          <h1> <i class="fa fa-area-chart"></i>非业务类型的财务处理</h1>
+          <h1><i class="fa fa-bar-chart"> </i>财务统计</h1>
+          <h1><i class="fa fa-line-chart"> </i>绩效考核</h1>
+          <h4>6月份全部开发完成</h4>
+        </div>
+        <div class="button"><a id="gotoStaff" href="#staff" class="button hvr-float"><span>下一步</span><i class="fa fa-arrow-right"></i></a></div>
+      </div>
+      <div id="staff" data-x='10000' data-y='11000' data-rotate='90' data-scale='1' class="step">
+        <h1>
+           
+          以下内容 <i class="fa fa-television"></i>
+        </h1>
+        <h4>黄宇 意向客户部分</h4>
+        <h4>赖炯 订单、产品部分</h4>
+        <h4>李秀贵 财务部分</h4><a id="gotologin" href="#login" class="button hvr-float"><span>马上登录</span><i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div id="login" data-x='19500' data-y='25000' data-rotate='90' data-z='300' data-scale='15' class="step"><img src="./img/logo.svg" class="logo"><a id="gotologin" href="http://erp.iflying.com" class="button hvr-float"><span>马上登录</span><i class="fa fa-arrow-right"></i></a></div>
+    </div>
+    <script type="text/javascript" src="./impress.js/js/impress.js"></script>
+    <script type="text/javascript" src="./js/erp.js"></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+//output: ../../lib/presentation/erp.html
+doctype html
+html(lang="zh")
+	head
+		title 飞云ERPv0.1
+		meta(charset="UTF-8")
+		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+		link(rel="shortcut icon" href="./img/icon.png")
+		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		script(type='text/javascript' src="./js/jquery.min.js")
+		link(rel='stylesheet' type='text/css' href='./css/erp.css')
+		link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
+		//link(rel='stylesheet' type='text/css' href='./Hover/css/hover-min.css')
+	body
+		#impress
+			#title.step(data-x=0 data-y=0 data-scale=1)
+				img.logo(src='./img/logo.svg')
+				a#startButton.button.hvr-float(href="#intro")
+					span 开启旅程
+					i.fa.fa-arrow-right
+				p.onlineDate 6月3日正式上线
+
+			#intro.step(data-x=0 data-y=1500 data-rotate=90 data-scale=2)
+				.introText
+					h1 
+						重新构建操作界面 
+						i.fa.fa-paint-brush
+					p.colorGray .
+					p.colorGray 1. 适应屏幕
+					p.colorGray 2. 操作面板
+					p.colorGray .
+					a#gotoChange.button.hvr-float(href="#changes")
+						span 下一步
+						i.fa.fa-arrow-right
+				.introImg
+					img.intro(src="./img/01intro.png")
+
+			#changes.step(data-x=1500 data-y=3000 data-scale=3 data-rotate=180 )
+				h1 
+					操作方式  
+					i.fa.fa-dashboard
+				h2
+					span 
+						精简菜单 
+						i.fa.fa-list
+					span 
+						避免跳转 
+						i.fa.fa-chain-broken
+					span 
+						统一交互 
+						i.fa.fa-mouse-pointer
+					span 
+						速度提升 
+						i.fa.fa-space-shuttle 
+				a#gotoBPMN.button.hvr-float(href="#BPMNDiagram")
+					span 下一步
+					i.fa.fa-arrow-right
+
+
+			#BPMNDiagram.step(data-x=3500 data-y=6000 data-rotate=90 data-scale=1)  
+				img.bpmn(src="./img/04flow.png")
+				h1 
+					尚未重构人资、行政、营销部分
+				h4 OA嵌入到新系统中
+				h4 6月份开始GTD系统的设计
+				a#gotoDesign.button.hvr-float(href="#development")
+					span 下一步
+					i.fa.fa-arrow-right
+
+			#development.step(data-x=7000 data-y=8000 data-rotate=180 data-scale=3)
+				.text
+					h1 
+						i.fa.fa-area-chart
+						|非业务类型的财务处理
+					h1
+						i.fa.fa-bar-chart 
+						|财务统计
+					h1
+						i.fa.fa-line-chart 
+						|绩效考核
+					h4 6月份全部开发完成
+				.button
+					a#gotoStaff.button.hvr-float(href="#staff")
+						span 下一步
+						i.fa.fa-arrow-right
+
+			#staff.step(data-x=10000 data-y=11000 data-rotate=90 data-scale=1)
+				h1 
+					|以下内容 
+					i.fa.fa-television
+				h4 黄宇 意向客户部分
+				h4 赖炯 订单、产品部分
+				h4 李秀贵 财务部分
+				a#gotologin.button.hvr-float(href="#login")
+					span 马上登录
+					i.fa.fa-arrow-right
+
+			#login.step(data-x=19500 data-y=25000 data-rotate=90  data-z=300 data-scale=15 )
+				img.logo(src='./img/logo.svg')
+				a#gotologin.button.hvr-float(href="http://erp.iflying.com")
+					span 马上登录
+					i.fa.fa-arrow-right
+
+		script(type='text/javascript' src="./impress.js/js/impress.js")
+		script(type="text/javascript" src="./js/erp.js")
