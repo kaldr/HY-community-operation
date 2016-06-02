@@ -124,21 +124,15 @@ html(lang="zh")
 					span 三个周 
 					|的班
 				img(src='./img/07team.png')
-				a#gotologin.button.hvr-float(href="http://erp.iflying.com")
-					span 马上登录
+				a#gotologin.button.hvr-float(href="#login")
+					span 这就登录
 					i.fa.fa-arrow-right
 
 			#login.step(data-x=19500 data-y=25000 data-rotate=90  data-z=300 data-scale=15 )
 				img.logo(src='./img/logo.svg')
-				form.login
-					input.username(type='text' value="用户名")
-					input.password(type='password' value='123')
-					button.button.submit(type='submit')
-						span 登 录 
-						i.fa.fa-arrow-right
-					button.button.loading(type='submit')
-						span 登 录 
-						i.fa.fa-spinner.fa-pulse
+				a#nowImlogin.button.hvr-float(href="http://erp.iflying.com")
+					span 马上登录
+					i.fa.fa-arrow-right
 
 
 		script(type='text/javascript' src="./impress.js/js/impress.js")
