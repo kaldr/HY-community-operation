@@ -1,7 +1,7 @@
 #====================================================================
 # 一、基本定义
 #====================================================================
-# 1.ngRequest转变为常用request
+# 1.$http用到的参数，其中将$http所需变量转变为常用request，其余两个方法是简单回调
 request = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -9,11 +9,21 @@ request = {
     transformRequest: (data) ->
         $.param(data)
 }
-# 2.所有API的配置
-SendMessageAPIUrl=''
-MemberListAPIUrl=''
-MessageHistoryCheckAPIUrl=''
 
+# 2.所有API的配置
+CommunityOPMessageAPIUrl='http://communityop.iflying.com/communication/Message/'
+SendMessageAPIUrl=''
+MessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'getMessageSentHistory'
+SaveMessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'saveMessageSentHistory'
+
+MessageModel=
+    'Hanlin':
+        userid:'000000000000000000000114'
+        username:'俞瑶'
+        departmentid:'000000000000000000000817'
+        url:'http://115.29.222.6:86/Club/HLLY/SeachKey?Duties=0&interest=&province=0&city=0&Key=&area=0&limit=1000&offset=0&sort=id&order=desc'
+        clubName:'翰林旅院'
+        clubID:156
 #====================================================================
 # 二、angular module
 #====================================================================
@@ -28,21 +38,60 @@ angular.module 'sender',[]
 
 # 发送控制器
 SenderController=(
+    #注入----------------------------------------------------
     GetMemberListFromAPI,
     SendMessages,
-    CheckMessageHistoryStatus)->
+    GetMessageSentHistory)->
     #定义----------------------------------------------------
     vm=this
+    #1方法----------------------------------------------------
 
-    #方法----------------------------------------------------
-    vm.sendMessage=sendMessage
+    ###
+    1.1设置
+    ###
 
-    #流程----------------------------------------------------
-    activate()#初始化
-    activate=(userid='000000000000000000000114',departmentid='000000000000000000000817')->
-        vm.userid=userid
-        vm.departmentid=departmentid
-    sendMessage=()->
+    #1.1.1 设置俱乐部
+    vm.setClub=(clubName)->
+        vm.club=MessageModel[clubName]
+        vm.getMessageHistory()#1.2.2 获取消息群发的历史记录
+        vm.getMemberCellphoneList()#1.2.3获取发送消息列表
+    #1.1.2 初始化控制器
+    vm.activate=()->
+        false
+    ###
+    1.2 消息发送处理
+    ###
+
+    #1.2.1 发送消息
+    vm.sendMessage=()->
+        ###
+        定义与方法
+        ###
+        console.log "hello"
+        #1.2.1.1验证短信内容字数，并且对短信进行附加内容处理
+        checkMessageContent=()->
+        #1.2.1.2验证发送历史记录，判断是否可以进行本条信息的发送
+        checkMessageHistory=()->
+        ###
+        流程
+        ###
+
+    #1.2.2 获取发送历史记录
+    vm.getMessageHistory=()->
+        saveHistoryToScope=(response)->
+            vm.sentHistory=response.data;
+        GetMessageSentHistory vm.club.clubID,saveHistoryToScope
+
+    #1.2.3获取发送消息列表，并且进行手机号验证，排除所有错误手机号
+    vm.getMemberCellphoneList=()->
+        saveMemberCellphoneListToScope=(response)->
+            checkPhoneNumber=(item)->
+            console.log response
+        GetMemberListFromAPI vm.club.url,saveMemberCellphoneListToScope
+    false
+    #绑定控制器方法与流程----------------------------------------------------
+
+    vm.activate()#1.1.2初始化
 
 angular.module "sender"
     .controller 'SenderController',SenderController
@@ -54,24 +103,48 @@ angular.module "sender"
 
 # 获取用户列表，返回手机数组
 GetMemberListFromAPI=($http)->
-    false
+    (url,callback)->
+        request.method = "GET"
+        request.url = url
+        request.data = {}
+        simpleSuccess=(response)->
+            callback response.data
+        simpleFail=(response)->
+            callback response.data
+        $http request
+            .then simpleSuccess,simpleFail
 angular.module 'sender'
     .factory 'GetMemberListFromAPI',GetMemberListFromAPI
 
 # 发送信息
 SendMessages=($http)->
+    ()->console.log 'SendMessages'
 angular.module 'sender'
     .factory 'SendMessages',SendMessages
 
 # 检查消息发送历史
-CheckMessageHistoryStatus=($http)->
+GetMessageSentHistory=($http)->
+    (clubID,callback)->
+        request.method = "GET"
+        request.url = MessageSentHistoryAPIUrl+"?clubID="+clubID
+        request.data = {}
+        simpleSuccess=(response)->
+            callback response.data
+        simpleFail=(response)->
+            callback response.data
+        $http request
+            .then simpleSuccess,simpleFail
 angular.module 'sender'
-    .factory 'CheckMessageHistoryStatus',CheckMessageHistoryStatus
+    .factory 'GetMessageSentHistory',GetMessageSentHistory
 
 #====================================================================
 # 五、angular filter
 #====================================================================
-
+toMessageNumber=()->
+    (item)->
+        Math.ceil item/64
+angular.module 'sender'
+    .filter 'toMessageNumber',toMessageNumber
 #====================================================================
 # 六、angular directive
 #====================================================================

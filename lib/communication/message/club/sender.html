@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>短信群发</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/message.css">
+  </head>
+  <body ng-app="sender" ng-cloak>
+    <div ng-controller="SenderController as vm" ng-init="vm.setClub('Hanlin')" class="container">
+      <div id="header">
+        <h1>{{vm.club.clubName}}短信群发</h1>
+      </div>
+      <ul ng-init="currentTab=1" class="nav nav-tabs">
+        <li ng-class="{'active':currentTab==1}"><a ng-click="currentTab=1">新短信</a></li>
+        <li ng-class="{'active':currentTab==2}"><a ng-click="currentTab=2">发送记录</a></li>
+      </ul>
+      <div id="newMessage" ng-show="currentTab==1">
+        <div class="alert alert-warning">
+          <p class="intro">注意：每一条短信都会<strong>产生费用！</strong>请认真阅读每一步操作的提示，谨慎操作！	</p>
+        </div>
+        <form>
+          <div class="form-group">
+            <label class="textareaTip">编辑短信内容 </label>
+            <p ng-show="vm.content.length&gt;0" class="badge">{{vm.content.length}}个字，共分{{vm.content.length|toMessageNumber}}条短信发送</p>
+          </div>
+          <div class="form-group">
+            <textarea rows="5" ng-model="vm.content" class="form-control"></textarea>
+          </div>
+          <button ng-click="vm.sendMessage()" ng-disabled="!vm.content.length" class="btn btn-primary">发送</button>
+        </form>
+        <div></div>
+      </div>
+      <div id="history" ng-show="currentTab==2">
+        <h1>群发历史记录</h1>
+        <table>
+          <tr>
+            <th>发送时间</th>
+            <th>发送内容</th>
+            <th>发送人数</th>
+          </tr>
+          <tr ng-repeat="historyitem in vm.sentHistory">
+            <th>historyitem.sendTime</th>
+            <td>historyitem.content</td>
+            <td>historyitem.memberCount</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/sender.js"></script>
+  </body>
+</html>
