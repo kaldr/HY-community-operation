@@ -249,7 +249,7 @@ angular.module 'sender'
 #====================================================================
 toMessageNumber=()->
     (item)->
-        Math.ceil item/64
+        Math.ceil item/60
 angular.module 'sender'
     .filter 'toMessageNumber',toMessageNumber
 #====================================================================
