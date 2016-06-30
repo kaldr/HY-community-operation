@@ -1,0 +1,77 @@
+//output: ../../../../lib/communication/message/club/sender.html
+doctype html
+html(lang="zh" ng-app='sender' ng-cloak)
+	head
+		title 短信群发
+		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+		link(rel='stylesheet' type='text/css' href='../../css/bootstrap.min.css')
+		link(rel='stylesheet' type='text/css' href='../../css/message.css')
+	body
+		div.container(ng-controller='SenderController as vm' ng-init="vm.setClub('Hanlin')" )
+			div#header
+				h1 {{vm.club.clubName}}短信群发
+					span.badge(ng-show='vm.memberCount') {{vm.memberCount}}个会员，共{{vm.sendList.length}}可发送短信
+			ul.nav.nav-tabs(ng-init="vm.currentTab=1")
+				li(ng-class="{'active':vm.currentTab==1}")
+					a(ng-click='vm.currentTab=1') 新短信
+				li(ng-class="{'active':vm.currentTab==2}")
+					a(ng-click='vm.currentTab=2') 发送记录
+				li(ng-class="{'active':vm.currentTab==3}" ng-show='vm.cantSendList.length')
+					a(ng-click='vm.currentTab=3') 非手机号码
+						span.badge {{vm.cantSendList.length}}个
+
+			div#newMessage(ng-show='vm.currentTab==1')
+				div.alert.alert-warning(ng-show='!vm.content||vm.content.length/64<=3')
+					p.intro 注意：每一条短信都会
+						strong 产生费用！
+						|请谨慎操作！
+				div.alert.alert-danger(ng-show='vm.content.length/64>3')
+					p.intro 内容过长。一条信息，不可超过3条短信。
+
+				form
+					div.form-group
+						label.textareaTip 编辑短信内容 
+						p.badge(ng-show='vm.content.length>0') {{vm.content.length}}个字，共分{{vm.content.length|toMessageNumber}}条短信发送
+					div.form-group
+						textarea.form-control(rows=5,ng-model='vm.content')
+					button.btn.btn-primary(type=button,ng-click='vm.sendMessage()',ng-disabled='!vm.content.length||vm.content.length/64>3||vm.sending') 发送
+
+
+			div#history(ng-show='vm.currentTab==2')
+				div.alert.alert-warning(ng-show='vm.sentHistory.length==0')
+					p.intro 暂时没有发送记录
+				table.table(ng-hide="vm.sentHistory.length==0")
+					thead
+						tr
+							th 发送时间
+							th 发送内容
+							th 发送人数
+							th 状态
+					tbody
+						tr(ng-repeat='historyitem in vm.sentHistory|orderBy:"-time"' ng-class="{'sending':historyitem.sending}")
+							th {{historyitem.time*1000|date:"yyyy-MM-dd HH:mm:ss"}}
+							td {{historyitem.content}}
+							td {{historyitem.membersCount}}
+							td {{historyitem.sending?'发送中':'已发送'}}
+
+			div#errorCellphone(ng-show='vm.currentTab==3')
+				table.table
+					thead
+						tr
+							th 编号
+							th 手机
+							th 会员
+							th 地址
+							th 职务
+					tbody
+						tr(ng-repeat='member in vm.cantSendList')
+							th {{$index+1}}
+							th {{member.Cellphone}}
+							td {{member.HName}}
+							td {{member.AddressDetail}}
+							td {{member.YDuties}}
+		script(src='../../js/underscore-min.js')		
+		script(src='../../js/angular.min.js')
+		script(src='../../js/jquery.min.js')
+		script(src='../../js/sender.js')
