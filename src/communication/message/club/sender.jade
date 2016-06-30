@@ -17,9 +17,9 @@ html(lang="zh" ng-app='sender' ng-cloak)
 					a(ng-click='vm.currentTab=1') 新短信
 				li(ng-class="{'active':vm.currentTab==2}")
 					a(ng-click='vm.currentTab=2') 发送记录
-				li(ng-class="{'active':vm.currentTab==3}" ng-show='vm.cantSendLit.length')
+				li(ng-class="{'active':vm.currentTab==3}" ng-show='vm.cantSendList.length')
 					a(ng-click='vm.currentTab=3') 非手机号码
-						span.badge {{vm.cantSendLit.length}}个
+						span.badge {{vm.cantSendList.length}}个
 
 			div#newMessage(ng-show='vm.currentTab==1')
 				div.alert.alert-warning(ng-show='!vm.content||vm.content.length/64<=3')

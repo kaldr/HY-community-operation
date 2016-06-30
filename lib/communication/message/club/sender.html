@@ -15,7 +15,7 @@
       <ul ng-init="vm.currentTab=1" class="nav nav-tabs">
         <li ng-class="{'active':vm.currentTab==1}"><a ng-click="vm.currentTab=1">新短信</a></li>
         <li ng-class="{'active':vm.currentTab==2}"><a ng-click="vm.currentTab=2">发送记录</a></li>
-        <li ng-class="{'active':vm.currentTab==3}" ng-show="vm.cantSendLit.length"><a ng-click="vm.currentTab=3">非手机号码<span class="badge">{{vm.cantSendLit.length}}个</span></a></li>
+        <li ng-class="{'active':vm.currentTab==3}" ng-show="vm.cantSendList.length"><a ng-click="vm.currentTab=3">非手机号码<span class="badge">{{vm.cantSendList.length}}个</span></a></li>
       </ul>
       <div id="newMessage" ng-show="vm.currentTab==1">
         <div ng-show="!vm.content||vm.content.length/64&lt;=3" class="alert alert-warning">

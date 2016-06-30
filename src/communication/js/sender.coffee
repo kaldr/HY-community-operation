@@ -124,18 +124,19 @@ SenderController=(
         vm.sending=true
         saveMemberCellphoneListToScope=(response)->
             vm.sendList=[]
-            vm.cantSendLit=[]
+            vm.cantSendList=[]
             vm.simpleMemberList=[]
             checkPhoneNumber=(item)->
                 if item.Cellphone?.length==11
                     vm.sendList.push item.Cellphone
                     vm.simpleMemberList.push {id:item.ID,Cellphone:item.Cellphone,name:item.HName}
                 else
-                    vm.cantSendLit.push item
+                    vm.cantSendList.push item
             vm.memberList=response.rows
             vm.memberCount=response.total
             vm.memberList.forEach checkPhoneNumber
             callback?()
+            console.log vm.cantSendList
             vm.sending=false
         GetMemberListFromAPI vm.club.url,saveMemberCellphoneListToScope
     false
