@@ -12,10 +12,10 @@ request = {
 
 # 2.所有API的配置
 CommunityOPMessageAPIUrl='http://communityop.iflying.com/communication/Message/'
-SendMessageAPIUrl=''
+SendMessageAPIUrl="http://115.29.222.6:8888/"+'BasicData/SystemOperation/AddSMSRequest'
 MessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'getMessageSentHistory'
 SaveMessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'saveMessageSentHistory'
-
+MSGchunk=200#筑通规定只能发200条/每次
 MessageModel=
     'Hanlin':
         userid:'000000000000000000000114'
@@ -39,6 +39,8 @@ angular.module 'sender',[]
 # 发送控制器
 SenderController=(
     #注入----------------------------------------------------
+    $filter,
+    $rootScope,
     GetMemberListFromAPI,
     SendMessages,
     GetMessageSentHistory)->
@@ -67,14 +69,49 @@ SenderController=(
         ###
         定义与方法
         ###
-        console.log "hello"
+
         #1.2.1.1验证短信内容字数，并且对短信进行附加内容处理
         checkMessageContent=()->
-        #1.2.1.2验证发送历史记录，判断是否可以进行本条信息的发送
-        checkMessageHistory=()->
+            if $filter("toMessageNumber")(vm.content.length)<4 then true else false
+        #1.2.1.2发送短信
+        send=()->
+            vm.sending=true
+            #基础数据
+            Basicdata=
+                content:vm.content
+                userID:vm.club.userid
+                userName:vm.club.username
+                clubID:vm.club.clubID
+                clubName:vm.club.clubName
+                departmentid:vm.club.departmentid
+                membersCount:vm.sendList.length
+                sending:true
+                time:new Date().getTime()/1000
+                sendTime:
+                    sec:new Date().getTime()/1000
+            #对ERP接口所需数据赋值
+            APIdata=_.clone Basicdata
+            APIdata.members=vm.simpleMemberList
+            #对短信接口需要的数据进行赋值
+            MSGdata=[]
+            chunk=MSGchunk
+            members=_.clone vm.sendList
+            while members.length
+                data=_.clone Basicdata
+                data.members = members.splice 0,chunk
+                MSGdata.push data
+            #发送短信成功后的回调函数
+            vm.sentHistory.push Basicdata
+            vm.currentTab=2
+            saveSentHistoryToScope=()->
+                Basicdata.sending=false
+                vm.sending=false
+            SendMessages MSGdata,APIdata,saveSentHistoryToScope
+
         ###
         流程
         ###
+        vm.getMemberCellphoneList(send) if checkMessageContent()
 
     #1.2.2 获取发送历史记录
     vm.getMessageHistory=()->
@@ -83,10 +120,23 @@ SenderController=(
         GetMessageSentHistory vm.club.clubID,saveHistoryToScope
 
     #1.2.3获取发送消息列表，并且进行手机号验证，排除所有错误手机号
-    vm.getMemberCellphoneList=()->
+    vm.getMemberCellphoneList=(callback)->
+        vm.sending=true
         saveMemberCellphoneListToScope=(response)->
+            vm.sendList=[]
+            vm.cantSendLit=[]
+            vm.simpleMemberList=[]
             checkPhoneNumber=(item)->
-            console.log response
+                if item.Cellphone?.length==11
+                    vm.sendList.push item.Cellphone
+                    vm.simpleMemberList.push {id:item.ID,Cellphone:item.Cellphone,name:item.HName}
+                else
+                    vm.cantSendLit.push item
+            vm.memberList=response.rows
+            vm.memberCount=response.total
+            vm.memberList.forEach checkPhoneNumber
+            callback?()
+            vm.sending=false
         GetMemberListFromAPI vm.club.url,saveMemberCellphoneListToScope
     false
     #绑定控制器方法与流程----------------------------------------------------
@@ -118,7 +168,63 @@ angular.module 'sender'
 
 # 发送信息
 SendMessages=($http)->
-    ()->console.log 'SendMessages'
+    (MSGdata,APIdata,callback)->
+        simpleSuccess=(response)->
+            callback? response.data
+        simpleFail=(response)->
+            callback? response.data
+        #发送到ERP接口
+        erpRequest=angular.copy request
+        erpRequest.method='POST'
+        erpRequest.url=SaveMessageSentHistoryAPIUrl
+        erpRequest.data=APIdata
+        $http erpRequest
+            .then simpleSuccess,simpleFail
+        #发送到短信接口
+        requests=[]
+        for data,index in MSGdata
+            console.log data
+            r=angular.copy request
+            r.method="POST"
+            r.url=SendMessageAPIUrl
+            message={}
+            message.OperationMobile=data.members.join ','
+            message.OperationNotes=data.content
+            message.OperationTypeID= 2
+            message.OrderID=0
+            message.SMSOrderStatus= 3
+            message.ValidateSign=31
+            r.data=
+                SMSRecord:JSON.stringify message
+            requests.push r
+            $http requests[index]
+                .then simpleSuccess,simpleFail
+###
+angular.module("disney").factory("sendDisneyMessage", sendDisneyMessage);
+
+function sendDisneyMessage($http) {
+  return func;
+
+  function func(params, callback) {
+    var api = dreamFlyUrl + "BasicData/SystemOperation/AddSMSRequest";
+    request.url = api;
+    request.method = "POST";
+    request.data = {
+      SMSRecord: JSON.stringify(params)
+    };
+    $http(request).then(success, fail);
+
+    function success(response) {
+      callback(response.data);
+    }
+
+    function fail(response) {
+
+    }
+  }
+}
+###
+
 angular.module 'sender'
     .factory 'SendMessages',SendMessages
 
