@@ -1,0 +1,49 @@
+//output: ../../lib/test/index.html
+
+doctype html
+html(lang="zh")
+	head
+		title 
+		meta(charset="UTF-8")
+		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+		meta(name="apple-mobile-web-app-status-bar-style" content='black')
+		meta(name="apple-mobile-web-app-capable" content="yes")
+		link(rel='stylesheet' type='text/css' href='./css/common.css')
+		link(rel='stylesheet' type='text/css' href='./css/my-app.css')
+		script(type='text/javascript' src="./js/jquery.min.js")
+		script(type='text/javascript' src="./js/touch.js")
+		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		script(type='text/javascript' src="./js/angular.min.js")
+		script(type='text/javascript' src="./js/angular-cookies.min.js")
+		link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
+		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
+
+	body(ontouchstart)
+		div.views
+			div.view.view-main
+				div.page
+					div.page-content
+						div
+							img(width='100%' src='images/img.jpg')
+						h2.tit 互动环节
+						div.list-block.que-list
+							ul
+								li.item-divider 1.健康人
+								li 
+									label.label-radio.item-content
+										input(type='radio' value='apple' name='radio-01')
+										div.item-media
+											font.alp A
+											i.icon.icon-form-radio
+										div.item-inner
+											div.item-title
+												img(src="images/img1.jpg")
+
+						div.toolbar
+							div
+								a.link.button.button-fill.color-red 看答案
+							p
+								span.color0 A
+
+		script(type="text/javascript" src='js/app.js')
