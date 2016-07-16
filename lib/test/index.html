@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" ng-app="test" ng-cloak>
   <head>
     <title> </title>
     <meta charset="UTF-8">
@@ -7,45 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" type="text/css" href="./css/common.css">
-    <link rel="stylesheet" type="text/css" href="./css/my-app.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
+    <!--link(rel='stylesheet' type='text/css' href='./css/common.css')-->
+    <link rel="stylesheet" type="text/css" href="./css/app.css">
+    <!--link(rel='stylesheet' type='text/css' href='./css/my-app.css')-->
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/touch.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
     <script type="text/javascript" src="./js/angular.min.js"></script>
     <script type="text/javascript" src="./js/angular-cookies.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
   </head>
-  <body ontouchstart>
-    <div class="views">
-      <div class="view view-main">
-        <div class="page">
-          <div class="page-content">
-            <div><img width="100%" src="images/img.jpg"></div>
-            <h2 class="tit">互动环节</h2>
-            <div class="list-block que-list">
-              <ul>
-                <li class="item-divider">1.健康人</li>
-                <li> 
-                  <label class="label-radio item-content">
-                    <input type="radio" value="apple" name="radio-01">
-                    <div class="item-media"><font class="alp">A</font><i class="icon icon-form-radio"></i></div>
-                    <div class="item-inner">
-                      <div class="item-title"><img src="images/img1.jpg"></div>
-                    </div>
-                  </label>
-                </li>
-              </ul>
+  <body ontouchstart ng-controller="testController as vm">
+    <div class="container">
+      <div class="row bannerContainer"><img width="100%" src="./images/title.svg"></div>
+      <div class="row titleContainer">
+        <h2 class="tit">互动环节</h2>
+        <p>共4道选择题，快测测你对癌症的了解程度吧！</p><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i>
+      </div>
+      <div id="questions" class="row questions">
+        <div ng-repeat="(questionID,question) in vm.questions" ng-show="vm.currentQuestionID==questionID" class="container">
+          <div class="row questionsContainer">
+            <div class="questionTitle">
+              <h2>第 {{questionID}} 题 </h2>
+              <h3>{{question.title}}</h3>
+              <div align="center" class="questionImgDiv">
+                <p class="center"><img ng-src="{{question.img}}" class="img-responsive questionImg"></p>
+              </div>
             </div>
-            <div class="toolbar">
-              <div><a class="link button button-fill color-red">看答案</a></div>
-              <p><span class="color0">A</span></p>
+          </div>
+          <div class="scrollDiv"></div>
+          <div class="row toolbar text-center">
+            <div class="container">
+              <div ng-hide="question.start" class="row"><a ng-click="vm.setStartState(questionID)" href="#questions" class="btn btn-primary btn-lg btn-long">选择答案</a></div>
+              <div ng-show="question.start" class="row optionsContainer">
+                <h4>请选择答案</h4>
+                <div ng-repeat="(key,item) in question.options" class="option">
+                  <button ng-click="vm.setQuestionWithChosen(questionID,key)" ng-class="{'btn-success':question.chosen==key&amp;&amp;key==question.answer,'btn-danger':question.chosen==key&amp;&amp;key!=question.answer}" class="btn btn-default btn-lg btn-long">{{key}} {{item}}</button>
+                </div>
+              </div>
+              <div ng-show="question.start" class="row">
+                <div>
+                  <button ng-disabled="!question.previous" ng-click="vm.showPreviousQuestion(questionID)" ng-show="question.previous" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
+                  <button ng-disabled="!question.right||!question.next" ng-show="question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
+                     
+                    下一题 <i class="glyphicon glyphicon-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div></div>
+      <div ng-show="vm.wrong" class="row tip">
+        <div class="alert alert-danger">不是这个答案，请选择其他选项</div>
+      </div>
     </div>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
   </body>
 </html>
