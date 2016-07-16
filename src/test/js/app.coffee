@@ -1,6 +1,12 @@
 #Definitions
 testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
     #functions
+    returnToQuestion=()->
+        vm.questionMode=true
+        vm.answerMode=false
+    end=()->
+        vm.questionMode=false
+        vm.answerMode=true
     showErrorInfo=(state)->
         if state then vm.wrong=false else vm.wrong=true
     setStartState=(questionID)->
@@ -33,7 +39,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             title:'实验样本GZ1004的检验结果图如下，请问这例结果代表被检测人身体状况如何？'
             img:'./images/a.png'
             options:vm.options
-            answer:"A"
+            answer:"B"
             next:2
             previous:false
             answerState:false#是否已经回答
@@ -73,23 +79,19 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             chosen:false
             right:false
             start:false
-
+    vm.questionMode=false
+    vm.answerMode=true
     vm.currentQuestionID=1
     vm.showNextQuestion=showNextQuestion
     vm.showAnswers=showAnswers
     vm.setQuestionWithChosen=setQuestionWithChosen
     vm.setStartState=setStartState
     vm.showPreviousQuestion=showPreviousQuestion
+    vm.returnToQuestion=returnToQuestion
+    vm.end=end
     true
-getResultFactory=()->
-    ()->
-resultToAPIFactory=()->
-    ()->
+
 #Angular Code
 angular.module 'test',[]
 angular.module 'test'
     .controller 'testController',testController
-angular.module 'test'
-    .factory "getResultFactory",getResultFactory
-angular.module 'test'
-    .factory 'resultToAPIFactory',resultToAPIFactory
