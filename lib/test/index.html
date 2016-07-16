@@ -61,6 +61,9 @@
       </div>
       <div id="answers" ng-show="vm.answerMode" class="row text-center"> 
         <div class="container">
+          <div class="row">
+            <h2 class="finished">您已经答对了所有的题!</h2>
+          </div>
           <div ng-repeat="(questionID,question) in vm.questions" class="row"><img ng-src="{{question.img}}" class="img-responsive">
             <h2>{{vm.options[question.answer]}}</h2>
           </div>
