@@ -12,11 +12,9 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
     showAnswers=()->
     setQuestionWithChosen=(questionID,option)->
         switch questionID
-            when '1','2','3'
+            when '1','2','3','4'
                 vm.questions[questionID].chosen=option
                 vm.questions[questionID].answerState=true
-            when '4'
-                vm.questions[questionID]
 
         vm.questions[questionID].start=true
         if option==vm.questions[questionID].answer then vm.questions[questionID].right=true else vm.questions[questionID].right=false
@@ -68,7 +66,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             title:"实验样本GZ1004的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
             img:'./images/d.png'
             options:vm.options
-            answer:"AB"
+            answer:"A"
             next:false
             previous:3
             answerState:false

@@ -48,8 +48,8 @@
               </div>
               <div ng-show="question.start" class="row">
                 <div>
-                  <button ng-disabled="!question.previous" ng-click="vm.showPreviousQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
-                  <button ng-disabled="!question.right||!question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
+                  <button ng-disabled="!question.previous" ng-click="vm.showPreviousQuestion(questionID)" ng-show="question.previous" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
+                  <button ng-disabled="!question.right||!question.next" ng-show="question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
                      
                     下一题 <i class="glyphicon glyphicon-arrow-right"></i>
                   </button>

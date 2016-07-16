@@ -53,12 +53,14 @@ html(lang="zh" ng-app='test' ng-cloak)
 									button.btn.btn-default.btn-lg.btn-long(ng-click="vm.setQuestionWithChosen(questionID,key)" ng-class="{'btn-success':question.chosen==key&&key==question.answer,'btn-danger':question.chosen==key&&key!=question.answer}") {{key}} {{item}}
 							div.row(ng-show="question.start")
 								div
-									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.previous' ng-click="vm.showPreviousQuestion(questionID)") 
+									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.previous' ng-click="vm.showPreviousQuestion(questionID)" ng-show='question.previous') 
 										i.glyphicon.glyphicon-arrow-left 
 										上一题
-									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.right||!question.next' ng-click='vm.showNextQuestion(questionID)') 
+									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.right||!question.next' ng-show='question.next' ng-click='vm.showNextQuestion(questionID)') 
 										下一题 
 										i.glyphicon.glyphicon-arrow-right
+
+
 			div.
 			div.row.tip(ng-show="vm.wrong")
 				div.alert.alert-danger 不是这个答案，请选择其他选项
