@@ -35,27 +35,26 @@
             </div>
           </div>
           <div class="row scrollDiv"></div>
-          <div class="row toolbar text-center">
-            <div class="container">
-              <div ng-show="vm.answerMode" class="row"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
-              <div ng-hide="question.start" class="row"><a ng-click="vm.setStartState(questionID)" href="#questions" class="btn btn-primary btn-lg btn-long">选择答案</a></div>
-              <div ng-show="question.start" class="row optionsContainer">
-                <h4>请选择答案</h4>
-                <div ng-repeat="(key,item) in question.options" class="option">
-                  <button ng-click="vm.setQuestionWithChosen(questionID,key)" ng-class="{'btn-success':question.chosen==key&amp;&amp;key==question.answer,'btn-danger':question.chosen==key&amp;&amp;key!=question.answer}" class="btn btn-default btn-lg btn-long">{{key}} {{item}}</button>
-                </div>
-              </div>
-              <div ng-show="question.start" class="row">
-                <div>
-                  <button ng-disabled="!question.previous" ng-click="vm.showPreviousQuestion(questionID)" ng-show="question.previous" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
-                  <button ng-disabled="!question.right||!question.next" ng-show="question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
-                     
-                    下一题 <i class="glyphicon glyphicon-arrow-right"></i>
-                  </button><a ng-hide="question.next" ng-click="vm.end()" href="#answers" class="btn btn-default btn-primary btn-lg btn-half">
-                     
-                    结束看答案 <i class="glyphicon glyphicon-arrow-right"></i></a>
-                </div>
-              </div>
+        </div>
+      </div>
+      <div ng-show="vm.questionMode" class="row toolbar text-center">
+        <div class="container">
+          <div ng-hide="vm.questions[vm.currentQuestionID].start" class="row"><a ng-click="vm.setStartState(vm.currentQuestionID)" href="#questions" class="btn btn-primary btn-lg btn-long">选择答案</a></div>
+          <div ng-show="vm.questions[vm.currentQuestionID].start" class="row optionsContainer">
+            <h4>请选择答案</h4>
+            <div ng-repeat="(key,item) in vm.questions[vm.currentQuestionID].options" class="option">
+              <button ng-click="vm.setQuestionWithChosen(vm.currentQuestionID,key)" ng-class="{'btn-success':(vm.questions[vm.currentQuestionID].chosen==key)&amp;&amp;(key==vm.questions[vm.currentQuestionID].answer),'btn-danger':vm.questions[vm.currentQuestionID].chosen==key&amp;&amp;key!=vm.questions[vm.currentQuestionID].answer}" class="btn btn-default btn-lg btn-long">{{key}} {{item}}</button>
+            </div>
+          </div>
+          <div ng-show="vm.questions[vm.currentQuestionID].start" class="row">
+            <div>
+              <button ng-disabled="!vm.questions[vm.currentQuestionID].previous" ng-click="vm.showPreviousQuestion(vm.currentQuestionID)" ng-show="vm.questions[vm.currentQuestionID].previous" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
+              <button ng-disabled="!vm.questions[vm.currentQuestionID].right||!vm.questions[vm.currentQuestionID].next" ng-show="vm.questions[vm.currentQuestionID].next" ng-click="vm.showNextQuestion(vm.currentQuestionID)" class="btn btn-default btn-success btn-lg btn-half">
+                 
+                下一题 <i class="glyphicon glyphicon-arrow-right"></i>
+              </button><a ng-hide="vm.questions[vm.currentQuestionID].next" ng-click="vm.end()" href="#answers" class="btn btn-default btn-primary btn-lg btn-half">
+                 
+                结束看答案 <i class="glyphicon glyphicon-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -71,7 +70,7 @@
           <div class="row scrollDiv"></div>
         </div>
       </div>
-      <div ng-show="vm.answerMode" class="row toolbar text-center fadeInUp"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
+      <div ng-show="vm.answerMode" class="row toolbar text-center"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
       <div ng-show="vm.wrong" class="row tip">
         <div class="alert alert-danger">不是这个答案，请选择其他选项</div>
       </div>

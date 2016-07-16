@@ -43,27 +43,25 @@ html(lang="zh" ng-app='test' ng-cloak)
 									img.img-responsive.questionImg(ng-src="{{question.img}}")
 					div.row.scrollDiv
 
-					div.row.toolbar.text-center
-						div.container
-							div.row(ng-show="vm.answerMode")
-								a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
-							div.row(ng-hide="question.start")
-								a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(questionID)" href="#questions") 选择答案
-							div.row.optionsContainer(ng-show="question.start")
-								h4 请选择答案
-								div.option(ng-repeat="(key,item) in question.options" )
-									button.btn.btn-default.btn-lg.btn-long(ng-click="vm.setQuestionWithChosen(questionID,key)" ng-class="{'btn-success':question.chosen==key&&key==question.answer,'btn-danger':question.chosen==key&&key!=question.answer}") {{key}} {{item}}
-							div.row(ng-show="question.start")
-								div
-									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.previous' ng-click="vm.showPreviousQuestion(questionID)" ng-show='question.previous') 
-										i.glyphicon.glyphicon-arrow-left 
-										上一题
-									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.right||!question.next' ng-show='question.next' ng-click='vm.showNextQuestion(questionID)') 
-										下一题 
-										i.glyphicon.glyphicon-arrow-right
-									a.btn.btn-default.btn-primary.btn-lg.btn-half(type=button  ng-hide='question.next' ng-click='vm.end()' href='#answers') 
-										结束看答案 
-										i.glyphicon.glyphicon-arrow-right
+			div.row.toolbar.text-center(ng-show="vm.questionMode")
+				div.container
+					div.row(ng-hide="vm.questions[vm.currentQuestionID].start")
+						a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(vm.currentQuestionID)" href="#questions") 选择答案
+					div.row.optionsContainer(ng-show="vm.questions[vm.currentQuestionID].start")
+						h4 请选择答案
+						div.option(ng-repeat="(key,item) in vm.questions[vm.currentQuestionID].options" )
+							button.btn.btn-default.btn-lg.btn-long(ng-click="vm.setQuestionWithChosen(vm.currentQuestionID,key)" ng-class="{'btn-success':(vm.questions[vm.currentQuestionID].chosen==key)&&(key==vm.questions[vm.currentQuestionID].answer),'btn-danger':vm.questions[vm.currentQuestionID].chosen==key&&key!=vm.questions[vm.currentQuestionID].answer}") {{key}} {{item}}
+					div.row(ng-show="vm.questions[vm.currentQuestionID].start")
+						div
+							button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!vm.questions[vm.currentQuestionID].previous' ng-click="vm.showPreviousQuestion(vm.currentQuestionID)" ng-show='vm.questions[vm.currentQuestionID].previous') 
+								i.glyphicon.glyphicon-arrow-left 
+								上一题
+							button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!vm.questions[vm.currentQuestionID].right||!vm.questions[vm.currentQuestionID].next' ng-show='vm.questions[vm.currentQuestionID].next' ng-click='vm.showNextQuestion(vm.currentQuestionID)') 
+								下一题 
+								i.glyphicon.glyphicon-arrow-right
+							a.btn.btn-default.btn-primary.btn-lg.btn-half(type=button  ng-hide='vm.questions[vm.currentQuestionID].next' ng-click='vm.end()' href='#answers') 
+								结束看答案 
+								i.glyphicon.glyphicon-arrow-right
 
 			div.row.text-center#answers.animated.bounceInLeft(ng-show='vm.answerMode') 
 				div.container
@@ -74,7 +72,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 						h2 {{vm.options[question.answer]}}
 					div.row.scrollDiv
 
-			div.row.toolbar.text-center.fadeInUp(ng-show="vm.answerMode")
+			div.row.toolbar.text-center(ng-show="vm.answerMode")
 				a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
 
 			div.row.tip(ng-show="vm.wrong")
