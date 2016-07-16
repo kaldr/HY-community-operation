@@ -1,5 +1,5 @@
 #Definitions
-testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
+testController=($scope,$rootScope)->
     #functions
     returnToQuestion=()->
         vm.questionMode=true
@@ -79,6 +79,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             chosen:false
             right:false
             start:false
+
     vm.questionMode=true
     vm.answerMode=false
     vm.currentQuestionID=1
