@@ -12,19 +12,19 @@
     <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
     <!--link(rel='stylesheet' type='text/css' href='./css/common.css')-->
     <script type="text/javascript" src="./js/touch.js"></script>
-    <!--link(rel='stylesheet' type='text/css' href='./css/animate.min.css')-->
+    <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
     <script type="text/javascript" src="./js/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/app.css">
   </head>
   <body ontouchstart ng-controller="testController as vm">
     <div class="container">
       <div class="row bannerContainer"><img src="./images/cover.jpg" class="nosee"><img width="100%" src="./images/title.svg"></div>
-      <div class="row titleContainer">
+      <div class="row titleContainer animated bounceInLeft">
         <h2 class="tit">互动环节</h2>
         <p>共4道选择题，快测测你对癌症的了解程度吧！</p><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i>
       </div>
       <div id="questions" ng-show="vm.questionMode" class="row questions">
-        <div ng-repeat="(questionID,question) in vm.questions" ng-show="vm.currentQuestionID==questionID" class="container">
+        <div ng-repeat="(questionID,question) in vm.questions" ng-show="vm.currentQuestionID==questionID" class="container animated fadeInUp">
           <div class="row questionsContainer">
             <div class="questionTitle">
               <h2>第 {{questionID}} 题 </h2>
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div id="answers" ng-show="vm.answerMode" class="row text-center"> 
+      <div id="answers" ng-show="vm.answerMode" class="row text-center animated bounceInLeft"> 
         <div class="container">
           <div class="row">
             <h2 class="finished">您已经答对了所有的题!</h2>
@@ -71,7 +71,7 @@
           <div class="row scrollDiv"></div>
         </div>
       </div>
-      <div ng-show="vm.answerMode" class="row toolbar text-center"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
+      <div ng-show="vm.answerMode" class="row toolbar text-center fadeInUp"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
       <div ng-show="vm.wrong" class="row tip">
         <div class="alert alert-danger">不是这个答案，请选择其他选项</div>
       </div>

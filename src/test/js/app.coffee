@@ -4,6 +4,7 @@ testController=($scope,$rootScope)->
     returnToQuestion=()->
         vm.questionMode=true
         vm.answerMode=false
+        vm.currentQuestionID=1
     end=()->
         vm.questionMode=false
         vm.answerMode=true
