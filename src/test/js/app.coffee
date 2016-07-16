@@ -79,8 +79,8 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             chosen:false
             right:false
             start:false
-    vm.questionMode=false
-    vm.answerMode=true
+    vm.questionMode=true
+    vm.answerMode=false
     vm.currentQuestionID=1
     vm.showNextQuestion=showNextQuestion
     vm.showAnswers=showAnswers

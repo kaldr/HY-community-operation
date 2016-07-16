@@ -73,6 +73,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 
 			div.row.toolbar.text-center(ng-show="vm.answerMode")
 				a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
+
 			div.row.tip(ng-show="vm.wrong")
 				div.alert.alert-danger 不是这个答案，请选择其他选项
 		script(type="text/javascript" src='./js/app.js')
