@@ -12,10 +12,11 @@ html(lang="zh" ng-app='test' ng-cloak)
 		link(rel="shortcut icon" href="./images/ico.png")
 		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
 		//link(rel='stylesheet' type='text/css' href='./css/common.css')
-		link(rel='stylesheet' type='text/css' href='./css/app.css')
 		script(type='text/javascript' src="./js/touch.js")
-		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		//link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
 		script(type='text/javascript' src="./js/angular.min.js")
+		link(rel='stylesheet' type='text/css' href='./css/app.css')
+
 
 
 	body(ontouchstart ng-controller='testController as vm')
@@ -30,7 +31,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 				i.glyphicon.glyphicon-star
 				i.glyphicon.glyphicon-star
 
-			div#questions.row.questions
+			div#questions.row.questions(ng-show='vm.questionMode')
 				div.container(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
 					div.row.questionsContainer
 						div.questionTitle
@@ -39,10 +40,12 @@ html(lang="zh" ng-app='test' ng-cloak)
 							div.questionImgDiv(align='center')
 								p.center
 									img.img-responsive.questionImg(ng-src="{{question.img}}")
-					div.scrollDiv
+					div.row.scrollDiv
 
 					div.row.toolbar.text-center
 						div.container
+							div.row(ng-show="vm.answerMode")
+								a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
 							div.row(ng-hide="question.start")
 								a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(questionID)" href="#questions") 选择答案
 							div.row.optionsContainer(ng-show="question.start")
@@ -57,9 +60,19 @@ html(lang="zh" ng-app='test' ng-cloak)
 									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.right||!question.next' ng-show='question.next' ng-click='vm.showNextQuestion(questionID)') 
 										下一题 
 										i.glyphicon.glyphicon-arrow-right
+									a.btn.btn-default.btn-primary.btn-lg.btn-half(type=button  ng-hide='question.next' ng-click='vm.end()' href='#answers') 
+										结束看答案 
+										i.glyphicon.glyphicon-arrow-right
 
+			div.row.text-center#answers(ng-show='vm.answerMode') 
+				div.container
+					div.row(ng-repeat='(questionID,question) in vm.questions')
+						img.img-responsive(ng-src='{{question.img}}')
+						h2 {{vm.options[question.answer]}}
+					div.row.scrollDiv
 
-			div.
+			div.row.toolbar.text-center(ng-show="vm.answerMode")
+				a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
 			div.row.tip(ng-show="vm.wrong")
 				div.alert.alert-danger 不是这个答案，请选择其他选项
 		script(type="text/javascript" src='./js/app.js')

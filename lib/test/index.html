@@ -10,10 +10,10 @@
     <link rel="shortcut icon" href="./images/ico.png">
     <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
     <!--link(rel='stylesheet' type='text/css' href='./css/common.css')-->
-    <link rel="stylesheet" type="text/css" href="./css/app.css">
     <script type="text/javascript" src="./js/touch.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
+    <!--link(rel='stylesheet' type='text/css' href='./css/animate.min.css')-->
     <script type="text/javascript" src="./js/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/app.css">
   </head>
   <body ontouchstart ng-controller="testController as vm">
     <div class="container">
@@ -22,7 +22,7 @@
         <h2 class="tit">互动环节</h2>
         <p>共4道选择题，快测测你对癌症的了解程度吧！</p><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i>
       </div>
-      <div id="questions" class="row questions">
+      <div id="questions" ng-show="vm.questionMode" class="row questions">
         <div ng-repeat="(questionID,question) in vm.questions" ng-show="vm.currentQuestionID==questionID" class="container">
           <div class="row questionsContainer">
             <div class="questionTitle">
@@ -33,9 +33,10 @@
               </div>
             </div>
           </div>
-          <div class="scrollDiv"></div>
+          <div class="row scrollDiv"></div>
           <div class="row toolbar text-center">
             <div class="container">
+              <div ng-show="vm.answerMode" class="row"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
               <div ng-hide="question.start" class="row"><a ng-click="vm.setStartState(questionID)" href="#questions" class="btn btn-primary btn-lg btn-long">选择答案</a></div>
               <div ng-show="question.start" class="row optionsContainer">
                 <h4>请选择答案</h4>
@@ -49,14 +50,24 @@
                   <button ng-disabled="!question.right||!question.next" ng-show="question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
                      
                     下一题 <i class="glyphicon glyphicon-arrow-right"></i>
-                  </button>
+                  </button><a ng-hide="question.next" ng-click="vm.end()" href="#answers" class="btn btn-default btn-primary btn-lg btn-half">
+                     
+                    结束看答案 <i class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div></div>
+      <div id="answers" ng-show="vm.answerMode" class="row text-center"> 
+        <div class="container">
+          <div ng-repeat="(questionID,question) in vm.questions" class="row"><img ng-src="{{question.img}}" class="img-responsive">
+            <h2>{{vm.options[question.answer]}}</h2>
+          </div>
+          <div class="row scrollDiv"></div>
+        </div>
+      </div>
+      <div ng-show="vm.answerMode" class="row toolbar text-center"><a ng-click="vm.returnToQuestion()" href="#questions" class="btn btn-primary btn-lg btn-long">返回重新答题</a></div>
       <div ng-show="vm.wrong" class="row tip">
         <div class="alert alert-danger">不是这个答案，请选择其他选项</div>
       </div>
