@@ -33,7 +33,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 				i.glyphicon.glyphicon-star
 
 			div#questions.row.questions(ng-show='vm.questionMode')
-				div.container.animated.fadeInUp(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
+				div.container.animated(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
 					div.row.questionsContainer
 						div.questionTitle
 							h2 第 {{questionID}} 题 
