@@ -7,7 +7,8 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
         vm.questions[questionID].start=true
     showNextQuestion=(questionID)->
         vm.currentQuestionID=vm.questions[questionID].next
-    showPreviousQuestion=()->
+    showPreviousQuestion=(questionID)->
+        vm.currentQuestionID=vm.questions[questionID].previous
     showAnswers=()->
     setQuestionWithChosen=(questionID,option)->
         switch questionID

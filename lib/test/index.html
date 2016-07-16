@@ -20,16 +20,17 @@
   </head>
   <body ontouchstart ng-controller="testController as vm">
     <div class="container">
-      <div class="row bannerContainer"><img width="100%" src="./images/img.jpg"></div>
+      <div class="row bannerContainer"><img width="100%" src="./images/title.svg"></div>
       <div class="row titleContainer">
         <h2 class="tit">互动环节</h2>
         <p>共4道选择题，快测测你对癌症的了解程度吧！</p><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i>
       </div>
-      <div class="row questions">
+      <div id="questions" class="row questions">
         <div ng-repeat="(questionID,question) in vm.questions" ng-show="vm.currentQuestionID==questionID" class="container">
           <div class="row questionsContainer">
-            <div>
-              <h3>{{questionID}}.{{question.title}}</h3>
+            <div class="questionTitle">
+              <h2>第 {{questionID}} 题 </h2>
+              <h3>{{question.title}}</h3>
               <div align="center" class="questionImgDiv">
                 <p class="center"><img ng-src="{{question.img}}" class="img-responsive questionImg"></p>
               </div>
@@ -38,9 +39,7 @@
           <div class="scrollDiv"></div>
           <div class="row toolbar text-center">
             <div class="container">
-              <div ng-hide="question.start" class="row">
-                <button ng-click="vm.setStartState(questionID)" class="btn btn-primary btn-lg btn-long">选择答案</button>
-              </div>
+              <div ng-hide="question.start" class="row"><a ng-click="vm.setStartState(questionID)" href="#questions" class="btn btn-primary btn-lg btn-long">选择答案</a></div>
               <div ng-show="question.start" class="row optionsContainer">
                 <h4>请选择答案</h4>
                 <div ng-repeat="(key,item) in question.options" class="option">
@@ -49,7 +48,7 @@
               </div>
               <div ng-show="question.start" class="row">
                 <div>
-                  <button ng-disabled="!question.previous" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
+                  <button ng-disabled="!question.previous" ng-click="vm.showPreviousQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half"> <i class="glyphicon glyphicon-arrow-left"> </i>上一题</button>
                   <button ng-disabled="!question.right||!question.next" ng-click="vm.showNextQuestion(questionID)" class="btn btn-default btn-success btn-lg btn-half">
                      
                     下一题 <i class="glyphicon glyphicon-arrow-right"></i>

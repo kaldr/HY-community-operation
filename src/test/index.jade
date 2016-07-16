@@ -24,7 +24,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 	body(ontouchstart ng-controller='testController as vm')
 		div.container
 			div.row.bannerContainer
-				img(width='100%' src='./images/img.jpg')
+				img(width='100%' src='./images/title.svg')
 			div.row.titleContainer
 				h2.tit 互动环节
 				p 共4道选择题，快测测你对癌症的了解程度吧！
@@ -32,11 +32,12 @@ html(lang="zh" ng-app='test' ng-cloak)
 				i.glyphicon.glyphicon-star
 				i.glyphicon.glyphicon-star
 
-			div.row.questions
+			div#questions.row.questions
 				div.container(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
 					div.row.questionsContainer
-						div
-							h3 {{questionID}}.{{question.title}}
+						div.questionTitle
+							h2 第 {{questionID}} 题 
+							h3 {{question.title}}
 							div.questionImgDiv(align='center')
 								p.center
 									img.img-responsive.questionImg(ng-src="{{question.img}}")
@@ -45,14 +46,14 @@ html(lang="zh" ng-app='test' ng-cloak)
 					div.row.toolbar.text-center
 						div.container
 							div.row(ng-hide="question.start")
-								button.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(questionID)") 选择答案
+								a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(questionID)" href="#questions") 选择答案
 							div.row.optionsContainer(ng-show="question.start")
 								h4 请选择答案
 								div.option(ng-repeat="(key,item) in question.options" )
 									button.btn.btn-default.btn-lg.btn-long(ng-click="vm.setQuestionWithChosen(questionID,key)" ng-class="{'btn-success':question.chosen==key&&key==question.answer,'btn-danger':question.chosen==key&&key!=question.answer}") {{key}} {{item}}
 							div.row(ng-show="question.start")
 								div
-									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.previous') 
+									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.previous' ng-click="vm.showPreviousQuestion(questionID)") 
 										i.glyphicon.glyphicon-arrow-left 
 										上一题
 									button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!question.right||!question.next' ng-click='vm.showNextQuestion(questionID)') 
