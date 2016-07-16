@@ -14,7 +14,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
 		//link(rel='stylesheet' type='text/css' href='./css/common.css')
 		script(type='text/javascript' src="./js/touch.js")
-		//link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
+		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
 		script(type='text/javascript' src="./js/angular.min.js")
 		link(rel='stylesheet' type='text/css' href='./css/app.css')
 
@@ -25,7 +25,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 			div.row.bannerContainer
 				img.nosee( src='./images/cover.jpg')
 				img(width='100%' src='./images/title.svg')
-			div.row.titleContainer
+			div.row.titleContainer.animated.bounceInLeft
 				h2.tit 互动环节
 				p 共4道选择题，快测测你对癌症的了解程度吧！
 				i.glyphicon.glyphicon-star
@@ -33,7 +33,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 				i.glyphicon.glyphicon-star
 
 			div#questions.row.questions(ng-show='vm.questionMode')
-				div.container(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
+				div.container.animated.fadeInUp(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
 					div.row.questionsContainer
 						div.questionTitle
 							h2 第 {{questionID}} 题 
@@ -65,7 +65,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 										结束看答案 
 										i.glyphicon.glyphicon-arrow-right
 
-			div.row.text-center#answers(ng-show='vm.answerMode') 
+			div.row.text-center#answers.animated.bounceInLeft(ng-show='vm.answerMode') 
 				div.container
 					div.row
 						h2.finished 您已经答对了所有的题!
@@ -74,7 +74,7 @@ html(lang="zh" ng-app='test' ng-cloak)
 						h2 {{vm.options[question.answer]}}
 					div.row.scrollDiv
 
-			div.row.toolbar.text-center(ng-show="vm.answerMode")
+			div.row.toolbar.text-center.fadeInUp(ng-show="vm.answerMode")
 				a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
 
 			div.row.tip(ng-show="vm.wrong")
