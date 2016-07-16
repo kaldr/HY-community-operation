@@ -66,6 +66,8 @@ html(lang="zh" ng-app='test' ng-cloak)
 
 			div.row.text-center#answers(ng-show='vm.answerMode') 
 				div.container
+					div.row
+						h2.finished 您已经答对了所有的题!
 					div.row(ng-repeat='(questionID,question) in vm.questions')
 						img.img-responsive(ng-src='{{question.img}}')
 						h2 {{vm.options[question.answer]}}
