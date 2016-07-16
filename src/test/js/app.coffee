@@ -41,7 +41,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             right:false#是否正确
             start:false#是否开始选择
         2:
-            title:"实验样本GZ1004的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
+            title:"实验样本GZ903的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
             img:'./images/b.png'
             options:vm.options
             answer:"B"
@@ -52,7 +52,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             right:false
             start:false
         3:
-            title:"实验样本GZ1004的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
+            title:"实验样本GCP0072的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
             img:'./images/c.png'
             options:vm.options
             answer:"C"
@@ -63,7 +63,7 @@ testController=($scope,$rootScope,getResultFactory,resultToAPIFactory)->
             right:false
             start:false
         4:
-            title:"实验样本GZ1004的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
+            title:"实验样本GCP0221的检验结果图如下，请问这例结果代表被检测人身体状况如何？"
             img:'./images/d.png'
             options:vm.options
             answer:"A"
