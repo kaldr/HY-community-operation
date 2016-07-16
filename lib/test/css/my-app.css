@@ -1,45 +1,180 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; background: transparent; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; }
-a { cursor: pointer; }
-ol, ul, li { list-style: none; }
-blockquote, q { quotes: none; }
-:focus { outline: 0; }
-a { color: #333; }
-ins { text-decoration: none; }
-del { text-decoration: line-through; }
-table { border-collapse: collapse; border-spacing: 0; }
-body { font-size: 12px; color: #333; font-family: 'Microsoft YaHei', '宋体'; }
-.views { max-width: 750px; margin: 0 auto; }
-img { display: block; }
-.full { width: 100%; height: auto; }
-* { box-sizing: border-box; -moz-box-sizing: border-box; /* Firefox */ -webkit-box-sizing: border-box; /* Safari */ }
-.ft14 { font-size: 14px; }
-.ft15 { font-size: 15px; }
-.ft16 { font-size: 16px; }
-.ft18 { font-size: 18px; }
-.ft12 { font-size: 12px; }
-.ft20 { font-size: 20px; }
-.ft24 { font-size: 24px; }
-.pt10 { padding-top:10px;}
-.mb10 { margin-bottom:10px;}
-input, textarea { font-family: 'Microsoft YaHei', '宋体'; }
-.page-content { overflow-x: hidden; }
-.center { text-align:center;}
-h2.tit { font-weight:normal; padding:15px; font-size:18px; text-align:center;}
-.header-card { border-bottom:1px solid #e1e1e1; padding:10px; font-size:16px;}
-.selectInput { width:50px; border:none; font-size:16px; text-align:center; text-transform:uppercase;}
-.queList { text-align:center; font-size:16px;}
-.queList img { width:100%; margin-bottom:10px;}
-.navbar { background: #d35656; color: #fff; }
-.navbar a { font-size: 15px; color: #fff; }
-.navbar::after { background: none; }
-i.icon.hBack { background: url(../images/i-back.png) no-repeat 0 2px; background-size: 15px auto; width: 18px; }
-
-.que-list .item-title span{ display: inline-block; vertical-align:middle;}
-.alp { margin-right:15px;}
-.list-block { margin:10px 0;}
-.list-block .item-divider { font-size:18px; color:#333;}
-
-.color0 { color:#000;}
-.color6 { color:#666;}
-.colorf0 { color:#ff0000;}
-.toolbar { padding:10px; height:auto;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+a {
+    cursor: pointer;
+}
+ol, ul, li {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+:focus {
+    outline: 0;
+}
+a {
+    color: #333;
+}
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Microsoft YaHei', '宋体';
+}
+.views {
+    max-width: 750px;
+    margin: 0 auto;
+}
+img {
+    display: block;
+}
+.full {
+    width: 100%;
+    height: auto;
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    /* Firefox */
+    -webkit-box-sizing: border-box;
+    /* Safari */
+}
+.ft14 {
+    font-size: 14px;
+}
+.ft15 {
+    font-size: 15px;
+}
+.ft16 {
+    font-size: 16px;
+}
+.ft18 {
+    font-size: 18px;
+}
+.ft12 {
+    font-size: 12px;
+}
+.ft20 {
+    font-size: 20px;
+}
+.ft24 {
+    font-size: 24px;
+}
+.pt10 {
+    padding-top: 10px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+input, textarea {
+    font-family: 'Microsoft YaHei', '宋体';
+}
+div.questionsContainer {
+    width: 100%;
+    margin: 0 auto;
+}
+div.questionImgDiv {
+    padding: 50px
+}
+img.questionImg {
+    width: 100%
+}
+.page-content {
+    overflow-x: hidden;
+}
+.center {
+    text-align: center;
+}
+h2.tit {
+    font-weight: normal;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+.header-card {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 10px;
+    font-size: 16px;
+}
+.selectInput {
+    width: 50px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.queList {
+    text-align: center;
+    font-size: 16px;
+}
+.queList img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.navbar {
+    background: #d35656;
+    color: #fff;
+}
+.navbar a {
+    font-size: 15px;
+    color: #fff;
+}
+.navbar::after {
+    background: none;
+}
+i.icon.hBack {
+    background: url(../images/i-back.png) no-repeat 0 2px;
+    background-size: 15px auto;
+    width: 18px;
+}
+.que-list .item-title span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alp {
+    margin-right: 15px;
+}
+.list-block {
+    margin: 10px 0;
+}
+.list-block .item-divider {
+    font-size: 18px;
+    color: #333;
+}
+.color0 {
+    color: #000;
+}
+.color6 {
+    color: #666;
+}
+.colorf0 {
+    color: #ff0000;
+}
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    height: auto;
+}
+.questionImgDiv {
+    border-bottom: 1px solid #DDD;
+}
+.optionItem {
+    background-color: #EEE;
+}
