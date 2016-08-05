@@ -1,49 +1,80 @@
 //output: ../../lib/test/index.html
 
 doctype html
-html(lang="zh")
+html(lang="zh" ng-app='test' ng-cloak)
 	head
-		title 
+		title 互动环节
+		meta(name="description" content="4个小问题，测测你对癌症的理解")
 		meta(charset="UTF-8")
 		meta(http-equiv='X-UA-Compatible' content="IE=edge,chrome=1")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
 		meta(name="apple-mobile-web-app-status-bar-style" content='black')
 		meta(name="apple-mobile-web-app-capable" content="yes")
-		link(rel='stylesheet' type='text/css' href='./css/common.css')
-		link(rel='stylesheet' type='text/css' href='./css/my-app.css')
-		script(type='text/javascript' src="./js/jquery.min.js")
+		link(rel="shortcut icon" href="./images/ico.png")
+		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
+		//link(rel='stylesheet' type='text/css' href='./css/common.css')
 		script(type='text/javascript' src="./js/touch.js")
 		link(rel='stylesheet' type='text/css' href='./css/animate.min.css')
 		script(type='text/javascript' src="./js/angular.min.js")
-		script(type='text/javascript' src="./js/angular-cookies.min.js")
-		link(rel='stylesheet' type='text/css' href='./fontawesome/css/font-awesome.min.css')
-		link(rel='stylesheet' type='text/css' href='./bootstrap/dist/css/bootstrap.min.css')
+		link(rel='stylesheet' type='text/css' href='./css/app.css')
 
-	body(ontouchstart)
-		div.views
-			div.view.view-main
-				div.page
-					div.page-content
+
+
+	body(ontouchstart ng-controller='testController as vm')
+		div.container
+			div.row.bannerContainer
+				img.nosee( src='./images/cover.jpg')
+				img(width='100%' src='./images/title.svg')
+			div.row.titleContainer.animated.bounceInLeft
+				h2.tit 互动环节
+				p 共4道选择题，快测测你对癌症的了解程度吧！
+				i.glyphicon.glyphicon-star
+				i.glyphicon.glyphicon-star
+				i.glyphicon.glyphicon-star
+
+			div#questions.row.questions(ng-show='vm.questionMode')
+				div.container.animated.fadeInUp(ng-repeat='(questionID,question) in vm.questions' ng-show='vm.currentQuestionID==questionID')
+					div.row.questionsContainer
+						div.questionTitle
+							h2 第 {{questionID}} 题 
+							h3 {{question.title}}
+							div.questionImgDiv(align='center')
+								p.center
+									img.img-responsive.questionImg(ng-src="{{question.img}}")
+					div.row.scrollDiv
+
+			div.row.toolbar.text-center(ng-show="vm.questionMode")
+				div.container
+					div.row(ng-hide="vm.questions[vm.currentQuestionID].start")
+						a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.setStartState(vm.currentQuestionID)" href="#questions") 选择答案
+					div.row.optionsContainer(ng-show="vm.questions[vm.currentQuestionID].start")
+						h4 请选择答案
+						div.option(ng-repeat="(key,item) in vm.questions[vm.currentQuestionID].options" )
+							button.btn.btn-default.btn-lg.btn-long(ng-click="vm.setQuestionWithChosen(vm.currentQuestionID,key)" ng-class="{'btn-success':(vm.questions[vm.currentQuestionID].chosen==key)&&(key==vm.questions[vm.currentQuestionID].answer),'btn-danger':vm.questions[vm.currentQuestionID].chosen==key&&key!=vm.questions[vm.currentQuestionID].answer}") {{key}} {{item}}
+					div.row(ng-show="vm.questions[vm.currentQuestionID].start")
 						div
-							img(width='100%' src='images/img.jpg')
-						h2.tit 互动环节
-						div.list-block.que-list
-							ul
-								li.item-divider 1.健康人
-								li 
-									label.label-radio.item-content
-										input(type='radio' value='apple' name='radio-01')
-										div.item-media
-											font.alp A
-											i.icon.icon-form-radio
-										div.item-inner
-											div.item-title
-												img(src="images/img1.jpg")
+							button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!vm.questions[vm.currentQuestionID].previous' ng-click="vm.showPreviousQuestion(vm.currentQuestionID)" ng-show='vm.questions[vm.currentQuestionID].previous') 
+								i.glyphicon.glyphicon-arrow-left 
+								上一题
+							button.btn.btn-default.btn-success.btn-lg.btn-half(type=button ng-disabled='!vm.questions[vm.currentQuestionID].right||!vm.questions[vm.currentQuestionID].next' ng-show='vm.questions[vm.currentQuestionID].next' ng-click='vm.showNextQuestion(vm.currentQuestionID)') 
+								下一题 
+								i.glyphicon.glyphicon-arrow-right
+							a.btn.btn-default.btn-primary.btn-lg.btn-half(type=button  ng-hide='vm.questions[vm.currentQuestionID].next' ng-click='vm.end()' href='#answers') 
+								结束看答案 
+								i.glyphicon.glyphicon-arrow-right
 
-						div.toolbar
-							div
-								a.link.button.button-fill.color-red 看答案
-							p
-								span.color0 A
+			div.row.text-center#answers.animated.bounceInLeft(ng-show='vm.answerMode') 
+				div.container
+					div.row
+						h2.finished 您已经答对了所有的题!
+					div.row(ng-repeat='(questionID,question) in vm.questions')
+						img.img-responsive(ng-src='{{question.img}}')
+						h2 {{vm.options[question.answer]}}
+					div.row.scrollDiv
 
-		script(type="text/javascript" src='js/app.js')
+			div.row.toolbar.text-center(ng-show="vm.answerMode")
+				a.btn.btn-primary.btn-lg.btn-long(ng-click="vm.returnToQuestion()" href="#questions") 返回重新答题
+
+			div.row.tip(ng-show="vm.wrong")
+				div.alert.alert-danger 不是这个答案，请选择其他选项
+		script(type="text/javascript" src='./js/app.js')
