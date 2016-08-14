@@ -12,7 +12,8 @@ request = {
 
 # 2.所有API的配置
 CommunityOPMessageAPIUrl='http://communityop.iflying.com/communication/Message/'
-SendMessageAPIUrl="http://115.29.222.6:8888/"+'BasicData/SystemOperation/AddSMSRequest'
+SendMessageAPIUrl='http://rpc.iflying.com/BasicData/SystemOperation/AddSMSRequest'
+#SendMessageAPIUrl="http://115.29.222.6:8888/"+'BasicData/SystemOperation/AddSMSRequest'
 MessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'getMessageSentHistory'
 SaveMessageSentHistoryAPIUrl=CommunityOPMessageAPIUrl+'saveMessageSentHistory'
 MSGchunk=200#筑通规定只能发200条/每次
@@ -95,6 +96,7 @@ SenderController=(
             #对短信接口需要的数据进行赋值
             MSGdata=[]
             chunk=MSGchunk
+
             members=_.clone vm.sendList
             while members.length
                 data=_.clone Basicdata
