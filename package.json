@@ -1,23 +1,25 @@
 {
-    "name": "HY-community-operation",
-    "version": "0.1.0",
-    "main": "lib/main.js",
-    "license": "BSD-3-Clause",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/kaldr/HY-community-operation"
-    },
-    "dependencies": {
-        "angular": "",
-        "angular-cookies": "",
-        "fontawesome":"",
-        "jquery": "",
-        "axis": "",
-        "bootstrap": "",
-        "animate.css": "",
-        "gsap": ""
-    },
-    "devDependencies": {
-        "electron-prebuilt": ""
-    }
+  "name": "HY-community-operation",
+  "version": "0.1.0",
+  "main": "lib/main.js",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaldr/HY-community-operation"
+  },
+  "dependencies": {
+    "angular": "",
+    "angular-cookies": "",
+    "animate.css": "",
+    "axis": "",
+    "bootstrap": "",
+    "coffee-script": "",
+    "fontawesome": "",
+    "gsap": "",
+    "jquery": "",
+
+  },
+  "devDependencies": {
+    "electron-prebuilt": ""
+  }
 }

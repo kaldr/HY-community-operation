@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" ng-app="sender" ng-cloak>
+<html lang="zh" ng-app="sender">
   <head>
     <title>短信群发</title>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/message.css">
   </head>
-  <body>
+  <body ng-cloak="true">
     <div ng-controller="SenderController as vm" ng-init="vm.setClub('Hanlin')" class="container">
       <div id="header">
         <h1>{{vm.club.clubName}}短信群发<span ng-show="vm.memberCount" class="badge">{{vm.memberCount}}个会员，共{{vm.sendList.length}}可发送短信</span></h1>
@@ -25,15 +25,18 @@
         <div ng-show="vm.content.length/64&gt;3" class="alert alert-danger">
           <p class="intro">内容过长。一条信息，不可超过3条短信。</p>
         </div>
+        <div ng-show="vm.senderror" class="alert alert-danger">{{vm.senderror.message}}</div>
         <form>
           <div class="form-group">
             <label class="textareaTip">编辑短信内容 </label>
+            <p ng-show="vm.illegalword" class="badge redBadge">含有非法字符“{{vm.illegalword}}”,本信息无法发送</p>
             <p ng-show="vm.content.length&gt;0" ng-class="{'redBadge':vm.content.length/64&gt;3,'greenBadge':vm.content.length/64&lt;=3}" class="badge">{{vm.content.length}}个字，共分{{vm.content.length|toMessageNumber}}条短信发送</p>
           </div>
           <div class="form-group">
-            <textarea rows="5" ng-model="vm.content" class="form-control"></textarea>
+            <textarea rows="5" ng-model="vm.content" ng-blur="vm.checkForbidWords()" class="form-control"></textarea>
           </div>
-          <button ng-click="vm.sendMessage()" ng-disabled="!vm.content.length||vm.content.length/64&gt;3||vm.sending" class="btn btn-primary">发送</button>
+          <button ng-click="vm.sendMessage()" ng-hide="vm.sending" ng-disabled="!vm.content.length||vm.content.length/64&gt;3||vm.sending||vm.getingList" class="btn btn-primary">发送</button>
+          <button ng-show="vm.sending" ng-disabled="true" class="btn">发送中，请等待... </button>
         </form>
       </div>
       <div id="history" ng-show="vm.currentTab==2">
