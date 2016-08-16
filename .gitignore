@@ -1,3 +1,5 @@
 node_modules/
 src/tools/
 lib/tools
+lib/test/
+src/test/
