@@ -6,7 +6,6 @@ request = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
-    withCredentials:true
     transformRequest: (data) ->
         $.param(data)
 }
@@ -219,6 +218,7 @@ SendMessages = ($http) ->
             r = angular.copy request
             r.method = "POST"
             r.url = SendMessageAPIUrl
+            r.withCredentials=true
             message = {}
             message.OperationMobile = data.members.join ','
             message.OperationNotes = data.content
