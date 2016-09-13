@@ -182,13 +182,13 @@ GetMemberListFromAPI = ($http) ->
         request.url = url
         request.data = {}
         simpleSuccess = (response) ->
-            response.data.rows=[
-              {
-                ID:123
-                Cellphone:'18618124986'
-                HName:"黄宇"
-              }
-            ]
+            # response.data.rows=[
+            #   {
+            #     ID:123
+            #     Cellphone:'18618124986'
+            #     HName:"黄宇"
+            #   }
+            # ]
             callback response.data
         simpleFail = (response) ->
             callback response.data
