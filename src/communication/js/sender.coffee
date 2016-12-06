@@ -218,14 +218,14 @@ SendMessages = ($http) ->
             r = angular.copy request
             r.method = "POST"
             r.url = SendMessageAPIUrl
-            r.withCredentials=true
+            r.withCredentials = true
             message = {}
             message.OperationMobile = data.members.join ','
             message.OperationNotes = data.content
             message.OperationTypeID = 2
             message.OrderID = 0
             message.SMSOrderStatus = 3
-            message.ValidateSign = 31
+            message.ValidateSign = 160
             r.data =
                 SMSRecord: JSON.stringify message
             requests.push r
