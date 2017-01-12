@@ -88,6 +88,6 @@ $ document
         clearPanel()
         appendResults list
         index += cuno
-        if index == prizeCount
+        if index >= prizeCount
           index = 0
           generatePrizes()
