@@ -6,7 +6,7 @@ $ document
     odometer = new Odometer({
         auto: true
         el: $('#numbers')[0]
-        value: 10200
+        value: 88200
         animation: 'slide'
         format: "(ddd)"
         duration: 6000
@@ -15,16 +15,16 @@ $ document
     odometerResult = new Odometer({
         auto: false
         el: $('#result')[0]
-        value: 10200
+        value: 88200
         format: "(ddd)"
         animation: 'slide'
-        duration: 500
+        duration: 200
         theme: 'train-station'
       } )
     odometer.render()
 
     updateValue = () ->
-      nextValue = Math.floor(Math.random() * (10200 - 10001) + 10001)
+      nextValue = Math.floor(Math.random() * (88200 - 88001) + 88001)
       odometer.update nextValue
       currentValue = nextValue
 
@@ -32,7 +32,7 @@ $ document
     generatePrizes = () ->
       prizes = []
       for i in [0...400]
-        value = Math.floor(Math.random() * (10200 - 10001) + 10001)
+        value = Math.floor(Math.random() * (88200 - 88001) + 88001)
         if prizes.indexOf value == - 1
           prizes.push value
         if prizes.length == prizeCount
@@ -52,11 +52,27 @@ $ document
       $("#luckers .panel-body span").remove()
 
     appendResults = (noList) ->
-      appendLabel = (nmb) ->
+      id = 0
+      showPrize = () ->
+        $("#luckers .panel-body #label"+id).fadeIn ()->
+          console.log id
+          id++
+          if id < noList.length
+            setTimeout () ->
+              odometerResult.update noList[id]
+              setTimeout showPrize, 900
+            , 900
+
+
+      appendLabel = (nmb, index) ->
         if nmb>-1
-          str = '<span class="label label-danger">'+nmb+'</span>'
+          str = '<span id="label'+index+'" style="display:none" class="label label-danger">'+nmb+'</span>'
           $("#luckers .panel-body").append str
+
       noList.forEach appendLabel
+      odometerResult.update noList[id]
+      setTimeout showPrize, 1500
+
 
     $ "#start"
       .click () ->
