@@ -1,6 +1,6 @@
 $ document
   .ready () ->
-    prizeCount = 118
+    prizeCount = 125
     currentValue = 100
     index = 0
     odometer = new Odometer({
