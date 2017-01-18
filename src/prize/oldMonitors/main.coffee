@@ -35,8 +35,10 @@ $ document
         value = Math.floor(Math.random() * (88200 - 88001) + 88001)
         if prizes.indexOf value == - 1
           prizes.push value
+        prizes = _.uniq prizes
         if prizes.length == prizeCount
           break
+      this.prizes = prizes
       console.log prizes
     $('#left').html prizeCount - index
 
