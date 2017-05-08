@@ -138,7 +138,7 @@ SenderController = (
     #1.2.2 获取发送历史记录
     vm.getMessageHistory = () ->
         saveHistoryToScope = (response) ->
-            vm.sentHistory = response.data;
+            vm.sentHistory = response.data
         GetMessageSentHistory vm.club.clubID, saveHistoryToScope
 
     #1.2.3获取发送消息列表，并且进行手机号验证，排除所有错误手机号
@@ -228,6 +228,9 @@ SendMessages = ($http) ->
             message.ValidateSign = 160
             r.data =
                 SMSRecord: JSON.stringify message
+                IsNeedToken:false
+                CreateUserID:'000000000000000000000114'
+                CreateUserName:'俞瑶'
             requests.push r
             $http requests[index]
                 .then simpleSuccess, simpleFail
