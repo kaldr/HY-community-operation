@@ -150,9 +150,9 @@ SenderController = (
             vm.simpleMemberList = []
             cellphoneReg = new RegExp '^1(8|3|5|4|7|9)'
             checkPhoneNumber = (item) ->
-                if item.Cellphone?.length == 11 and item.Cellphone?.match /^1[3|8|4|5|7|9]\d{9}$/
-                    vm.sendList.push item.Cellphone
-                    vm.simpleMemberList.push {id: item.ID, Cellphone: item.Cellphone, name: item.HName}
+                if item.CustomerMobile?.length == 11 and item.CustomerMobile?.match /^1[3|8|4|5|7|9]\d{9}$/
+                    vm.sendList.push item.CustomerMobile
+                    vm.simpleMemberList.push {id: item.ID, Cellphone: item.CustomerMobile, name: item.HName}
                 else
                     vm.cantSendList.push item
             vm.memberList = response.rows
