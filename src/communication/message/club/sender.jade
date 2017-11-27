@@ -70,10 +70,10 @@ html(lang="zh" ng-app='sender')
 						tr(ng-repeat='member in vm.cantSendList')
 							th {{$index+1}}
 							th {{member.CustomerMobile}}
-							td {{member.HName}}
+							td {{member.CustomerName}}
 							td {{member.AddressDetail}}
 							td {{member.YDuties}}
 		script(src='../../js/underscore-min.js')
 		script(src='../../js/angular.min.js')
 		script(src='../../js/jquery.min.js')
-		script(src='../../js/sender.js')
+		script(src='../../../../src/communication/js/sender.js')

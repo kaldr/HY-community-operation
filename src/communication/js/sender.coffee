@@ -156,6 +156,7 @@ SenderController = (
                 else
                     vm.cantSendList.push item
             vm.memberList = response.rows
+            # console.log response.rows
             vm.memberCount = response.total
             vm.memberList.forEach checkPhoneNumber
             #console.log vm.sendList
