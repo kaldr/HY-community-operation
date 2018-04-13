@@ -153,7 +153,7 @@ SenderController = (
                 if item.CustomerMobile?.length == 11 and item.CustomerMobile?.match /^1[3|8|4|5|7|9]\d{9}$/
                     vm.sendList.push item.CustomerMobile
                     vm.simpleMemberList.push {id: item.ID, Cellphone: item.CustomerMobile, name: item.HName}
-                else
+                elseshang
                     vm.cantSendList.push item
             vm.memberList = response.rows
             # console.log response.rows
