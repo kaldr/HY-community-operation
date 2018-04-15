@@ -1,6 +1,6 @@
 $ document
   .ready () ->
-    prizeCount = 125
+    prizeCount = 200
     currentValue = 100
     index = 0
     odometer = new Odometer({
@@ -24,7 +24,7 @@ $ document
     odometer.render()
 
     updateValue = () ->
-      nextValue = Math.floor(Math.random() * (88200 - 88001) + 88001)
+      nextValue = Math.floor(Math.random() * (88250 - 88001) + 88001)
       odometer.update nextValue
       currentValue = nextValue
 
@@ -32,7 +32,7 @@ $ document
     generatePrizes = () ->
       prizes = []
       for i in [0...400]
-        value = Math.floor(Math.random() * (88200 - 88001) + 88001)
+        value = Math.floor(Math.random() * (88250 - 88001) + 88001)
         if prizes.indexOf value == - 1
           prizes.push value
         prizes = _.uniq prizes
